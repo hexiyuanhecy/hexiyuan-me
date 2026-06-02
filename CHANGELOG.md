@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.2.0] - 2026-06-02
+
+**Commit:** `08ddd20`
+
+### Added
+
+- ✅ **数据库架构** (基于 `database.md` 设计)
+  - 内容主表 `Entry` - 支持多种内容类型
+  - 类型子表: `WorkExperience`, `Project`, `Knowledge`, `Travel`, `Food`, `Daily`
+  - 模块分发表 `EntryModule` - 实现"一次录入，多处展示"
+  - 分类表 `Category` - 支持无限层级树状结构
+  - 标签系统 `Tag` + `EntryTag`
+  - 文本内容表 `TextContent` - 分离大字段优化性能
+  - AI 原生预留字段: `aiAnalysis`, `aiVector`
+
+- ✅ **Prisma ORM 集成**
+  - Prisma 7.8.0 + SQLite
+  - 完整的 schema 定义
+  - 自动生成 Prisma Client
+
+- ✅ **配置文件**
+  - `.env` 环境变量配置
+  - `prisma.config.ts` 数据库配置
+
+### Technical Stack
+
+- **数据库**: SQLite (开发环境)
+- **ORM**: Prisma 7.8.0
+- **框架**: Next.js 16 + TypeScript
+
+---
+
 ## [v1.1.0] - 2026-06-02
 
 **Commit:** `c51b46f`

@@ -51,11 +51,19 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Profile: 'Profile',
-  Experience: 'Experience',
+  User: 'User',
+  Entry: 'Entry',
+  TextContent: 'TextContent',
+  EntryModule: 'EntryModule',
+  WorkExperience: 'WorkExperience',
   Project: 'Project',
-  TimelineItem: 'TimelineItem',
-  KnowledgeArticle: 'KnowledgeArticle'
+  Knowledge: 'Knowledge',
+  Travel: 'Travel',
+  Food: 'Food',
+  Daily: 'Daily',
+  Category: 'Category',
+  Tag: 'Tag',
+  EntryTag: 'EntryTag'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -71,45 +79,79 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const ProfileScalarFieldEnum = {
+export const UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  title: 'title',
   bio: 'bio',
-  location: 'location',
-  email: 'email',
-  githubUrl: 'githubUrl',
+  avatar: 'avatar',
+  skills: 'skills',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-export const ExperienceScalarFieldEnum = {
+export const EntryScalarFieldEnum = {
   id: 'id',
-  period: 'period',
+  userId: 'userId',
+  type: 'type',
+  status: 'status',
+  title: 'title',
+  slug: 'slug',
+  summary: 'summary',
+  contentType: 'contentType',
+  occurredAt: 'occurredAt',
+  location: 'location',
+  aiAnalysis: 'aiAnalysis',
+  aiVector: 'aiVector',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EntryScalarFieldEnum = (typeof EntryScalarFieldEnum)[keyof typeof EntryScalarFieldEnum]
+
+
+export const TextContentScalarFieldEnum = {
+  id: 'id',
+  entryId: 'entryId',
+  content: 'content',
+  excerpt: 'excerpt'
+} as const
+
+export type TextContentScalarFieldEnum = (typeof TextContentScalarFieldEnum)[keyof typeof TextContentScalarFieldEnum]
+
+
+export const EntryModuleScalarFieldEnum = {
+  id: 'id',
+  entryId: 'entryId',
+  moduleName: 'moduleName'
+} as const
+
+export type EntryModuleScalarFieldEnum = (typeof EntryModuleScalarFieldEnum)[keyof typeof EntryModuleScalarFieldEnum]
+
+
+export const WorkExperienceScalarFieldEnum = {
+  entryId: 'entryId',
   company: 'company',
   role: 'role',
-  description: 'description',
+  startDate: 'startDate',
+  endDate: 'endDate',
   techStack: 'techStack',
-  profileId: 'profileId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type ExperienceScalarFieldEnum = (typeof ExperienceScalarFieldEnum)[keyof typeof ExperienceScalarFieldEnum]
+export type WorkExperienceScalarFieldEnum = (typeof WorkExperienceScalarFieldEnum)[keyof typeof WorkExperienceScalarFieldEnum]
 
 
 export const ProjectScalarFieldEnum = {
-  id: 'id',
-  slug: 'slug',
-  title: 'title',
+  entryId: 'entryId',
+  name: 'name',
   description: 'description',
   techStack: 'techStack',
+  link: 'link',
   highlights: 'highlights',
-  githubUrl: 'githubUrl',
-  period: 'period',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -117,32 +159,82 @@ export const ProjectScalarFieldEnum = {
 export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
 
 
-export const TimelineItemScalarFieldEnum = {
-  id: 'id',
-  year: 'year',
-  title: 'title',
-  description: 'description',
-  type: 'type',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type TimelineItemScalarFieldEnum = (typeof TimelineItemScalarFieldEnum)[keyof typeof TimelineItemScalarFieldEnum]
-
-
-export const KnowledgeArticleScalarFieldEnum = {
-  id: 'id',
-  slug: 'slug',
-  title: 'title',
-  description: 'description',
-  content: 'content',
-  date: 'date',
+export const KnowledgeScalarFieldEnum = {
+  entryId: 'entryId',
+  categoryId: 'categoryId',
   tags: 'tags',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type KnowledgeArticleScalarFieldEnum = (typeof KnowledgeArticleScalarFieldEnum)[keyof typeof KnowledgeArticleScalarFieldEnum]
+export type KnowledgeScalarFieldEnum = (typeof KnowledgeScalarFieldEnum)[keyof typeof KnowledgeScalarFieldEnum]
+
+
+export const TravelScalarFieldEnum = {
+  entryId: 'entryId',
+  destination: 'destination',
+  travelDate: 'travelDate',
+  tags: 'tags',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TravelScalarFieldEnum = (typeof TravelScalarFieldEnum)[keyof typeof TravelScalarFieldEnum]
+
+
+export const FoodScalarFieldEnum = {
+  entryId: 'entryId',
+  categoryId: 'categoryId',
+  tags: 'tags',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type FoodScalarFieldEnum = (typeof FoodScalarFieldEnum)[keyof typeof FoodScalarFieldEnum]
+
+
+export const DailyScalarFieldEnum = {
+  entryId: 'entryId',
+  categoryId: 'categoryId',
+  tags: 'tags',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DailyScalarFieldEnum = (typeof DailyScalarFieldEnum)[keyof typeof DailyScalarFieldEnum]
+
+
+export const CategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  parentId: 'parentId',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
+
+
+export const TagScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TagScalarFieldEnum = (typeof TagScalarFieldEnum)[keyof typeof TagScalarFieldEnum]
+
+
+export const EntryTagScalarFieldEnum = {
+  id: 'id',
+  entryId: 'entryId',
+  tagId: 'tagId'
+} as const
+
+export type EntryTagScalarFieldEnum = (typeof EntryTagScalarFieldEnum)[keyof typeof EntryTagScalarFieldEnum]
 
 
 export const SortOrder = {

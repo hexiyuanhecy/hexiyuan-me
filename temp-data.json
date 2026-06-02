@@ -20,6 +20,32 @@
           "TypeScript"
         ],
         "profileId": "1"
+      },
+      {
+        "id": "1780397441232",
+        "period": "2022-至今",
+        "company": "某独角兽公司",
+        "role": "高级前端工程师",
+        "description": "2022年加入某独角兽公司，担任高级前端工程师，负责核心产品架构设计与性能优化，使用 React、Next.js、TypeScript 技术栈",
+        "techStack": [
+          "React",
+          "Next.js",
+          "TypeScript"
+        ],
+        "profileId": "1"
+      },
+      {
+        "id": "1780398225344",
+        "period": "2022-至今",
+        "company": "",
+        "role": "NPS 体验治理、JSError 稳定性治理专项 Owner",
+        "description": "字节跳动-飞书 · 前端开发工程师\n2022.04 - 2025.05 (3年)\n负责飞书微勤、汇报两大核心业务线的开发、架构重构与专项治理，服务千万级用户；担任 NPS 体验治理、JSError 稳定性治理专项 Owner，联动跨团队搭建业务闭环体系；参与系统重构、双版本融合等核心项目，负责前端工程化体系建设。\n滴滴出行-橙心 · 订单领域 Owner\n2021.04 - 2022.04 (1年)\n负责橙心优选多端（C端/A端小程序、PC采购商城）前端开发，聚焦业务落地、性能优化与跨团队协作，保障电商交易链路稳定。\n毅简科技 · 应急方向前端 Owner\n2019.07 - 2021.04 (1.5年)\n负责 6+ 应急指挥系统多子项目定制化开发，主导自研GIS模块重构优化，沉淀通用方案，提升团队研发效率，助力项目验收及团队获奖。",
+        "techStack": [
+          "React",
+          "Next.js",
+          "TypeScript"
+        ],
+        "profileId": "1"
       }
     ]
   },
@@ -53,6 +79,40 @@
         "功能完成"
       ],
       "period": "2026"
+    },
+    {
+      "id": "1780397497129",
+      "slug": "-11-html--mpwip8vd",
+      "title": "知识库：🟢 一、界面与样式工程\n\n1.1 HTML 与可访...",
+      "description": "知识库：🟢 一、界面与样式工程\n\n1.1 HTML 与可访问性\n- 语义化标签与 ARIA 属性体系 ⭐⭐⭐\n- 可访问性自动化检测（axe-core / Lighthouse 规则） ⭐⭐\n- 键盘导航流设计（Tab Order 与焦点管理） ⭐⭐\n- SEO 基础（meta、结构化数据）⭐⭐\n  \n1.2 CSS 核心布局\n- 盒模型与 BFC ⭐⭐⭐⭐\n- Flexbox 完整用法 ⭐⭐⭐⭐⭐\n- Grid 布局（含 subgrid 对齐）⭐⭐⭐⭐\n- 定位体系与包含块 ⭐⭐⭐\n- 层叠上下文与 z-index ⭐⭐⭐\n  \n1.3 响应式与工程化\n- 媒体查询 / 容器查询 ⭐⭐⭐\n- 移动端适配（viewport、rem/vw、安全区）⭐⭐⭐\n- CSS 工程化选型（Tailwind / CSS Modules）⭐⭐⭐\n- CSS 变量与主题切换 ⭐⭐\n- CSS Houdini API（自定义布局、滤镜等）⭐⭐\n  \n1.4 高性能动画\n- transform / opacity 动画与合成层 ⭐⭐⭐\n- 滚动驱动动画、View Transitions API ⭐⭐\n- Web Animations API（替代传统CSS动画）⭐⭐⭐\n\n---\n\n🟡 二、语言与运行时基础\n\n2.1 ECMAScript 深入\n- 类型系统与隐式转换陷阱 ⭐⭐⭐\n- 作用域 / 闭包 / 执行上下文（变量提升、TDZ）⭐⭐⭐⭐⭐\n- 原型链与继承（含 class 本质）⭐⭐⭐⭐\n- WeakMap / WeakSet 应用场景 ⭐⭐⭐⭐\n- 异步编程-事件循环 宏任务微任务 promise\n  - 手写 Promise.all / race / allSettled / any\n  - async/await 原理（Generator + 自动执行器）\n  - 常见异步顺序 / 并发控制题\n- 模块化（ESM 静态分析、CJS 差异、动态导入）⭐⭐⭐⭐\n  \n2.2 TypeScript 深度\n- 基础类型与泛型推导 ⭐⭐⭐\n- 条件类型、infer、模板字面量类型 ⭐⭐⭐⭐\n- 常用工具类型手写（Partial / Required / Pick / Omit / Record）⭐⭐⭐⭐\n- 类型守卫（in / instanceof / 自定义守卫）与断言函数 ⭐⭐⭐\n- 工具类型实现原理（如 Omit 的 keyof 联合过滤） ⭐⭐⭐\n- TypeScript 5.0+ 新特性（如 satisfies 运算符）⭐⭐⭐\n  \n2.3 浏览器渲染管线\n- DOM / CSSOM / 布局 / 绘制 / 合成完整流程 ⭐⭐⭐⭐\n- 重绘与回流的触发条件及合成层优化实践 ⭐⭐⭐\n- 帧动画与 requestIdleCallback ⭐⭐\n- 从 url 输入到页面渲染完整流程\n- 前端缓存\n  \n2.4 代码设计与架构模式\n- 发布-订阅 / 观察者模式（EventEmitter、Vue 响应式）⭐⭐⭐⭐\n- 策略模式（表单校验器、弹窗策略）⭐⭐⭐\n- 单例模式（全局状态容器、弹窗管理）⭐⭐⭐\n- 装饰器 / 代理模式（HOC、Vue 插件）⭐⭐⭐\n- SOLID 原则在组件中的体现 ⭐⭐\n\n2.5 其他查漏补缺\n- Class get/set & Proxy\n- Reflect API 与元编程⭐⭐\n\n\n---\n🟠 三、框架与全栈应用\n\n3.1 React 体系 ⭐⭐⭐⭐⭐\n1. Hooks 深度\n-  useState/useReducer状态与批量更新机制\n- useEffect/useLayoutEffect执⾏时机差异\n- useCallback/useMemo与闭包陷阱\n- useRef与forwardRef/useImperativeHandle\n- ⾃定义 Hooks 设计与逻辑复\n\n2. 3.1 Fiber 与并发特性\n- 为什么需要 Fiber（解决同步递归不可中断问题）\n- 双缓冲树与 Lane 优先级模型\n- 时间切片与浏览器帧对齐、任务队列调度 ⭐⭐⭐\n- useTransition 与 useDeferredValue\n- Suspense 与 ErrorBoundary 协同（异步加载降级）\n- React Compiler 自动 memoization 原理（原 Forget）\n  \n3. React 各版本新特性\n4. 状态管理\n- Zustand 原理与使用场景\n- Redux Toolkit 核心概念（slice、middleware）\n  \n5. Next.js 全栈（App Router）\n- Server Components 与 Client Components 边界\n- Server Actions 与乐观更新\n- 渲染策略（SSG / ISR / SSR / PPR）\n- 中间件与路由组\n- 虚拟 DOM 与 Diff 算法（Key 的作用、列表渲染优化）\n\n3.2 Vue 体系 ⭐⭐⭐⭐⭐\nvue 渲染流程\n1. 响应式系统\n- Proxy 实现 reactive / ref 及其对比与局限性\n- computed 惰性求值原理\n- effectScope 与避免内存泄漏\n- Vapor Mode 无虚拟 DOM 原理（了解）\n- 自定义渲染器原理 ⭐⭐⭐\n\n2. Composition API\n- setup 与生命周期映射\n- watch / watchEffect 依赖追踪与执行时机差异\n- composables 逻辑复用规范\n  \n3. 编译优化\n- 静态提升与预字符串化\n- PatchFlags 二进制位标记规则与动态节点追踪 ⭐⭐⭐⭐\n- Block Tree 与靶向更新（diff 优化算法） ⭐⭐⭐⭐\n  \n4. todo-vue 原理深挖\n\n5. 状态管理与路由\n- Pinia 模块化、TypeScript 集成及与 Vuex 的区别\n- Vue Router 4 动态路由与导航守卫\n  \n6. Nuxt3 全栈\n- 混合渲染策略（SSR/SSG/ISR/SWR）\n- useFetch / useAsyncData 服务端数据获取\n- 约定式路由与自动导入\n- 中间件与登录鉴权\n  \n3.3 其他框架\n- Svelte 5 Runes 编译思路 ⭐\n- Solid.js 细粒度响应式 ⭐\n  \n3.4 框架深度对比与选型\n- React vs Vue：渲染机制、响应式原理、性能特征 ⭐⭐⭐\n- SSR 生态对比（Next.js vs Nuxt vs SvelteKit）⭐⭐⭐\n- 选型决策矩阵（团队经验、迁移成本、业务复杂度） ⭐⭐⭐\n  \n3.5 前端场景化算法\n- 深拷贝与结构化克隆（循环引用、Map/Set 边界）⭐⭐⭐⭐\n- LRU / LFU 缓存机制实现 ⭐⭐⭐⭐\n- 虚拟滚动中的二分查找应用 ⭐⭐⭐\n- 前缀树（Trie）在搜索建议中的应用 ⭐⭐⭐\n- 拓扑排序（依赖解析、构建顺序）⭐⭐⭐⭐\n- 布隆过滤器在数据去重中的应用⭐⭐⭐\n  \n\n---\n\n🔵 四、工程化与交付保障\n\n4.1 构建工具\nWebpack\n- Loader 与 Plugin 机制与区别 ⭐⭐⭐⭐\n- 构建优化（持久化缓存、splitChunks、tree shaking）⭐⭐⭐⭐\n- 简单 Loader / Plugin 实现 ⭐⭐\n  \nVite\n- 预构建与 ESM 请求链路 ⭐⭐⭐⭐\n- HMR 原理（与 Webpack 对比）⭐⭐⭐⭐\n- 插件机制与 Rollup 生产构建 ⭐⭐⭐\n- Turbopack 与 Snowpack 对比⭐⭐\n- Turbopack / Rspack 现状 ⭐\n  \n4.2 包管理与项目组织\n- pnpm 硬链接与幽灵依赖 ⭐⭐⭐\n- monorepo（Turborepo 任务编排）⭐⭐⭐\n- 语义化版本与 Changelog 自动化 ⭐⭐\n  \n4.3 研发流程与质量卡点\n- 技术方案评审要点 ⭐⭐⭐\n- Code Review 文化（逻辑 / 边界 / 安全）⭐⭐⭐⭐\n- 工程化质量卡点：代码复杂度控制、依赖审计、代码审计流程 ⭐⭐⭐\n- 分支策略（Trunk-Based）⭐⭐⭐\n- 上线卡点与变更流程 ⭐⭐\n  \n4.4 CI/CD 与灰度发布\n- 流水线设计（Lint → Test → Build → Deploy）⭐⭐⭐\n- 灰度发布策略与特性开关 ⭐⭐⭐⭐\n- 快速回滚机制 ⭐⭐⭐\n  \n4.5 代码规范与升级\n- ESLint / Prettier / Husky 配置 ⭐⭐⭐\n- 依赖安全审计（npm audit、Snyk）⭐⭐\n- 依赖锁定文件一致性策略 ⭐⭐\n- 技术栈迁移（Webpack → Vite）步骤 ⭐⭐⭐\n- 框架大版本升级策略 ⭐⭐\n  \n4.6 测试策略\n- 测试金字塔模型（单元 / 集成 / e2e）⭐⭐⭐⭐\n- Jest / Vitest 核心（mock、spy、异步测试、timer 假参数）\n- 组件测试（RTL / VTU，测试行为而非实现）\n- 端到端测试（Playwright / Cypress 选型）\n- 快照测试的利与弊 ⭐⭐\n- ESLint 7+ 的新规则与自动修复功能⭐⭐\n  \n4.7 组件库与设计系统\n- 组件 API 设计原则（一致性、可组合性）⭐⭐⭐\n- 样式隔离方案（Shadow DOM、Scoped CSS、CSS-in-JS）\n- 文档工程（Storybook）与视觉回归测试（Chromatic）\n- Monorepo 下组件库版本管理（Changesets）\n- Cypress 实时回放与组件测试支持⭐⭐⭐\n  \n4.8 系统设计方法论 ⭐⭐⭐⭐ 【重点新增】\n- 前端五层架构模型：表现层 → 状态层 → 服务层 → 领域层 → 基础设施层\n- 微前端架构设计：事件总线通信、Mediation 中介模式、路由隔离方案\n- SDK 设计规范：Tree Shaking 友好导出、模块按需加载、类型安全设计\n  \n\n---\n\n🟣 五、跨端开发\n\n5.1 小程序深度\n- 双线程架构与 setData 性能优化 ⭐⭐⭐⭐\n- 分包策略与预加载优化 ⭐⭐⭐\n- 服务端渲染与客户端渲染在小程序中的选择 ⭐⭐\n  \n5.2 跨端方案对比\n- Taro vs uni-app vs RN 渲染原理 ⭐⭐⭐\n- 与 WebAssembly 结合的可能性与场景 ⭐⭐\n- 适用场景与选型矩阵 ⭐⭐⭐\n- Flutter 与前端生态的融合（如 FLE）⭐⭐\n  \n\n---\n\n⚪ 六、性能优化与可观测性\n\n6.1 加载性能\n- 关键渲染路径（CRP）优化 ⭐⭐⭐⭐\n- 图片/字体优化（WebP、AVIF、font-display）⭐⭐⭐⭐\n- 预加载/预连接策略 ⭐⭐⭐\n  \n6.2 运行时性能\n- 重绘回流与合成层优化 ⭐⭐⭐\n- 长任务分解（时间切片、scheduler.yield）⭐⭐⭐\n- 虚拟列表实现与防抖节流 ⭐⭐⭐\n- 框架层缓存（memo、computed、useMemo）⭐⭐⭐\n- Web Workers 多线程优化实践⭐⭐⭐\n  \n6.3 监控体系 ⭐⭐⭐⭐⭐ 【PDF 核心补充落地】\n- 监控系统五层架构：数据采集 → 存储 → 分析 → 告警 → 可视化\n- Core Web Vitals 量化指标与优化（LCP ≤ 2.5s / INP ≤ 200ms / CLS ≤ 0.1）⭐⭐⭐⭐\n- 全链路错误捕获（ErrorBoundary + window.onerror + unhandledrejection）⭐⭐⭐⭐\n- 白屏率监控与 Crash 归因 ⭐⭐⭐\n- 告警策略：告警收敛算法、分级标准、去重机制 ⭐⭐⭐\n- 埋点设计与业务监控 ⭐⭐⭐\n- 性能回归卡点与自动化告警 ⭐⭐\n- Real User Monitoring（RUM）与用户体验监控⭐⭐⭐\n  \n\n---\n\n🟤 七、服务端与全栈能力\n\n7.1 Node.js 核心\n- 事件循环与 libuv ⭐⭐⭐\n- Stream 应用（大文件处理、HTTP 响应流）⭐⭐⭐\n- 框架中间件（Express / Koa）⭐⭐⭐\n  \n7.2 BFF 与全栈\n- BFF 接口聚合与降级策略 ⭐⭐⭐⭐\n- Next.js API Routes / Server Actions ⭐⭐⭐\n- 全栈架构设计：API 网关设计、微服务集群、内容分发系统 ⭐⭐⭐\n- Serverless 函数 ⭐⭐\n- Edge Functions 与边缘计算场景⭐⭐⭐\n  \n\n---\n\n🟡 八、计算机基础与安全\n\n8.1 网络\n- HTTP 缓存（强缓存/协商缓存/CDN 缓存层级）⭐⭐⭐⭐\n- HTTPS 混合内容问题与解决方案 ⭐⭐⭐\n- CORS 跨域（预检请求细节、SameSite Cookie 配合）⭐⭐⭐⭐\n- WebSocket 与 HTTP/2 Server Push 原理 ⭐⭐⭐\n- CDN 预热与刷新策略 ⭐⭐\n- QUIC 协议与 HTTP/3 特性⭐⭐⭐\n  \n8.2 安全\n- XSS / CSRF 防御机制与实战案例 ⭐⭐⭐⭐\n- JWT 双 Token 机制（Access/Refresh Token）⭐⭐⭐⭐\n- Cookie 安全属性（SameSite、HttpOnly、Secure）⭐⭐⭐\n- CSP 策略配置 ⭐⭐\n- 点击劫持（Clickjacking）防御与 Frame-ancestors 策略⭐⭐⭐\n  \n\n---\n\n🟣 九、前沿与 AI 加分\n\n9.1 AI 与前端 ⭐⭐⭐ 【RAG 深度补全】\n- AI 辅助编程（Copilot / Cursor）⭐⭐\n- RAG 检索增强生成：BM25 词频检索 vs 向量相似度检索（余弦/欧氏距离） ⭐⭐⭐\n- 向量数据库选型（Faiss IVF_FLAT / Milvus 分片 / Pinecone 压缩） ⭐⭐\n- RAG 前端集成：动态上下文注入、与框架状态管理结合、性能优化 ⭐⭐⭐\n- 界面生成（v0.dev）⭐\n- AgentGPT 与前端智能体开发⭐⭐⭐\n  \n9.2 新运行时与生态 ⭐⭐ 【重要性上调】\n- Bun / Deno vs Node.js：性能特征、启动速度、生态兼容性 ⭐⭐⭐\n- WebAssembly 内存安全模型：线性内存隔离、沙箱隔离、与 JS 共享内存 ⭐⭐⭐\n- Wasm 与前端框架的交互机制及实际应用场景 ⭐⭐\n  \n\n---\n\n🔶 十、职业素养与成长\n\n10.1 团队协作与推动 ⭐⭐⭐⭐ 【量化表达强化】\n- 发现并推动专项（问题 → 方案 → 量化指标）⭐⭐⭐⭐\n- 行为锚定评分法（BARS）：定义可观测的能力等级行为描述 ⭐⭐⭐\n- 跨团队沟通与评审 ⭐⭐⭐\n  \n10.2 技术方案与代码审查 ⭐⭐⭐⭐ 【重点新增】\n- 技术方案评审框架：架构合理性验证、非功能需求覆盖度、风险控制矩阵 ⭐⭐⭐\n- 代码审查标准维度：功能性、代码质量、安全性、测试完整性 ⭐⭐⭐\n- 量化案例表达（STAR 法则 + 量化指标，如“信息漏损率下降 50%”） ⭐⭐⭐⭐\n  \n10.3 心智与成长\n- 压力排解与自我调节 ⭐⭐\n- 知识管理与持续学习习惯 ⭐⭐\n- 技术沉淀与方法论输出 ⭐⭐⭐\n- 技术债务管理与ROI评估⭐⭐⭐\n  \n\n---\n",
+      "techStack": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Vue",
+        "Node.js",
+        "Tailwind"
+      ],
+      "highlights": [
+        "项目实现",
+        "功能完成"
+      ],
+      "period": "2026"
+    },
+    {
+      "id": "1780398225344",
+      "slug": "--202204---20-mpwj4urk",
+      "title": "字节跳动-飞书 · 前端开发工程师\n2022.04 - 20...",
+      "description": "字节跳动-飞书 · 前端开发工程师\n2022.04 - 2025.05 (3年)\n负责飞书微勤、汇报两大核心业务线的开发、架构重构与专项治理，服务千万级用户；担任 NPS 体验治理、JSError 稳定性治理专项 Owner，联动跨团队搭建业务闭环体系；参与系统重构、双版本融合等核心项目，负责前端工程化体系建设。\n滴滴出行-橙心 · 订单领域 Owner\n2021.04 - 2022.04 (1年)\n负责橙心优选多端（C端/A端小程序、PC采购商城）前端开发，聚焦业务落地、性能优化与跨团队协作，保障电商交易链路稳定。\n毅简科技 · 应急方向前端 Owner\n2019.07 - 2021.04 (1.5年)\n负责 6+ 应急指挥系统多子项目定制化开发，主导自研GIS模块重构优化，沉淀通用方案，提升团队研发效率，助力项目验收及团队获奖。",
+      "techStack": [
+        "React",
+        "TypeScript"
+      ],
+      "highlights": [
+        "项目实现",
+        "功能完成"
+      ],
+      "period": "2022"
     }
   ],
   "timeline": [
@@ -76,7 +136,58 @@
       "title": "完成项目",
       "description": "项目经历\n飞书微勤业务系统开发与迭代\n字节飞书 · 核心业务\n参与飞书微勤标准版与企业版双系统融合，",
       "type": "project"
+    },
+    {
+      "id": "1780397497129",
+      "year": "2026",
+      "title": "完成项目",
+      "description": "知识库：🟢 一、界面与样式工程\n\n1.1 HTML 与可访问性\n- 语义化标签与 ARIA 属性体",
+      "type": "project"
+    },
+    {
+      "id": "1780397441232",
+      "year": "2022",
+      "title": "加入某独角兽公司",
+      "description": "2022年加入某独角兽公司，担任高级前端工程师，负责核心产品架构设计与性能优化，使用 React、Next.js、TypeScript 技术栈",
+      "type": "work"
+    },
+    {
+      "id": "1780398225344",
+      "year": "2022",
+      "title": "加入",
+      "description": "字节跳动-飞书 · 前端开发工程师\n2022.04 - 2025.05 (3年)\n负责飞书微勤、汇报两大核心业务线的开发、架构重构与专项治理，服务千万级用户；担任 NPS 体验治理、JSError 稳定性治理专项 Owner，联动跨团队搭建业务闭环体系；参与系统重构、双版本融合等核心项目，负责前端工程化体系建设。\n滴滴出行-橙心 · 订单领域 Owner\n2021.04 - 2022.04 (1年)\n负责橙心优选多端（C端/A端小程序、PC采购商城）前端开发，聚焦业务落地、性能优化与跨团队协作，保障电商交易链路稳定。\n毅简科技 · 应急方向前端 Owner\n2019.07 - 2021.04 (1.5年)\n负责 6+ 应急指挥系统多子项目定制化开发，主导自研GIS模块重构优化，沉淀通用方案，提升团队研发效率，助力项目验收及团队获奖。",
+      "type": "work"
+    },
+    {
+      "id": "1780398225344",
+      "year": "2022",
+      "title": "完成项目",
+      "description": "字节跳动-飞书 · 前端开发工程师\n2022.04 - 2025.05 (3年)\n负责飞书微勤、汇报",
+      "type": "project"
+    },
+    {
+      "id": "1780398225344",
+      "year": "2022",
+      "title": "获得成就",
+      "description": "字节跳动-飞书 · 前端开发工程师\n2022.04 - 2025.05 (3年)\n负责飞书微勤、汇报两大核心业务线的开发、架构重构与专项治理，服务千万级用户；担任 NPS 体验治理、JSError 稳定性治理专项 Owner，联动跨团队搭建业务闭环体系；参与系统重构、双版本融合等核心项目，负责前端工程化体系建设。\n滴滴出行-橙心 · 订单领域 Owner\n2021.04 - 2022.04 (1年)\n负责橙心优选多端（C端/A端小程序、PC采购商城）前端开发，聚焦业务落地、性能优化与跨团队协作，保障电商交易链路稳定。\n毅简科技 · 应急方向前端 Owner\n2019.07 - 2021.04 (1.5年)\n负责 6+ 应急指挥系统多子项目定制化开发，主导自研GIS模块重构优化，沉淀通用方案，提升团队研发效率，助力项目验收及团队获奖。",
+      "type": "achievement"
     }
   ],
-  "knowledge": []
+  "knowledge": [
+    {
+      "id": "1780397497129",
+      "slug": "-11-html--mpwip8vd",
+      "title": "知识库：🟢 一、界面与样式工程\n\n1.1 HTML 与可访...",
+      "description": "知识库：🟢 一、界面与样式工程\n\n1.1 HTML 与可访问性\n- 语义化标签与 ARIA 属性体系 ⭐⭐⭐\n- 可访问性自动化检测（axe-core / Lighthouse 规则） ⭐⭐\n- 键盘导航流设计（Tab Order 与焦点管理） ⭐⭐\n- SEO 基础（meta、结构化数据）⭐⭐\n  \n1.2 CSS 核心布局\n- 盒模型与 BFC ⭐⭐⭐⭐\n- Flexbox 完整用法 ⭐⭐⭐⭐⭐\n- Grid 布局（含 subgrid 对齐）⭐⭐⭐⭐\n- 定位体系与包含块 ⭐⭐⭐\n- 层叠上下文与 z-index ⭐⭐⭐\n  \n1.3 响应式与工程化\n- 媒体查询 / 容器查询 ⭐⭐⭐\n- 移动端适配（viewport、rem/vw、安全区）⭐⭐⭐\n- CSS 工程化选型（Tailwind / CSS Modules）⭐⭐⭐\n- CSS 变量与主题切换 ⭐⭐\n- CSS Houdini API（自定义布局、滤镜等）⭐⭐\n  \n1.4 高性能动画\n- transform / opacity 动画与合成层 ⭐⭐⭐\n- 滚动驱动动画、View Transitions API ⭐⭐\n- Web Animations API（替代传统CSS动画）⭐⭐⭐\n\n---\n\n🟡 二、语言与运行时基础\n\n2.1 ECMAScript 深入\n- 类型系统与隐式转换陷阱 ⭐⭐⭐\n- 作用域 / 闭包 / 执行上下文（变量提升、TDZ）⭐⭐⭐⭐⭐\n- 原型链与继承（含 class 本质）⭐⭐⭐⭐\n- WeakMap / WeakSet 应用场景 ⭐⭐⭐⭐\n- 异步编程-事件循环 宏任务微任务 promise\n  - 手写 Promise.all / race / allSettled / any\n  - async/await 原理（Generator + 自动执行器）\n  - 常见异步顺序 / 并发控制题\n- 模块化（ESM 静态分析、CJS 差异、动态导入）⭐⭐⭐⭐\n  \n2.2 TypeScript 深度\n- 基础类型与泛型推导 ⭐⭐⭐\n- 条件类型、infer、模板字面量类型 ⭐⭐⭐⭐\n- 常用工具类型手写（Partial / Required / Pick / Omit / Record）⭐⭐⭐⭐\n- 类型守卫（in / instanceof / 自定义守卫）与断言函数 ⭐⭐⭐\n- 工具类型实现原理（如 Omit 的 keyof 联合过滤） ⭐⭐⭐\n- TypeScript 5.0+ 新特性（如 satisfies 运算符）⭐⭐⭐\n  \n2.3 浏览器渲染管线\n- DOM / CSSOM / 布局 / 绘制 / 合成完整流程 ⭐⭐⭐⭐\n- 重绘与回流的触发条件及合成层优化实践 ⭐⭐⭐\n- 帧动画与 requestIdleCallback ⭐⭐\n- 从 url 输入到页面渲染完整流程\n- 前端缓存\n  \n2.4 代码设计与架构模式\n- 发布-订阅 / 观察者模式（EventEmitter、Vue 响应式）⭐⭐⭐⭐\n- 策略模式（表单校验器、弹窗策略）⭐⭐⭐\n- 单例模式（全局状态容器、弹窗管理）⭐⭐⭐\n- 装饰器 / 代理模式（HOC、Vue 插件）⭐⭐⭐\n- SOLID 原则在组件中的体现 ⭐⭐\n\n2.5 其他查漏补缺\n- Class get/set & Proxy\n- Reflect API 与元编程⭐⭐\n\n\n---\n🟠 三、框架与全栈应用\n\n3.1 React 体系 ⭐⭐⭐⭐⭐\n1. Hooks 深度\n-  useState/useReducer状态与批量更新机制\n- useEffect/useLayoutEffect执⾏时机差异\n- useCallback/useMemo与闭包陷阱\n- useRef与forwardRef/useImperativeHandle\n- ⾃定义 Hooks 设计与逻辑复\n\n2. 3.1 Fiber 与并发特性\n- 为什么需要 Fiber（解决同步递归不可中断问题）\n- 双缓冲树与 Lane 优先级模型\n- 时间切片与浏览器帧对齐、任务队列调度 ⭐⭐⭐\n- useTransition 与 useDeferredValue\n- Suspense 与 ErrorBoundary 协同（异步加载降级）\n- React Compiler 自动 memoization 原理（原 Forget）\n  \n3. React 各版本新特性\n4. 状态管理\n- Zustand 原理与使用场景\n- Redux Toolkit 核心概念（slice、middleware）\n  \n5. Next.js 全栈（App Router）\n- Server Components 与 Client Components 边界\n- Server Actions 与乐观更新\n- 渲染策略（SSG / ISR / SSR / PPR）\n- 中间件与路由组\n- 虚拟 DOM 与 Diff 算法（Key 的作用、列表渲染优化）\n\n3.2 Vue 体系 ⭐⭐⭐⭐⭐\nvue 渲染流程\n1. 响应式系统\n- Proxy 实现 reactive / ref 及其对比与局限性\n- computed 惰性求值原理\n- effectScope 与避免内存泄漏\n- Vapor Mode 无虚拟 DOM 原理（了解）\n- 自定义渲染器原理 ⭐⭐⭐\n\n2. Composition API\n- setup 与生命周期映射\n- watch / watchEffect 依赖追踪与执行时机差异\n- composables 逻辑复用规范\n  \n3. 编译优化\n- 静态提升与预字符串化\n- PatchFlags 二进制位标记规则与动态节点追踪 ⭐⭐⭐⭐\n- Block Tree 与靶向更新（diff 优化算法） ⭐⭐⭐⭐\n  \n4. todo-vue 原理深挖\n\n5. 状态管理与路由\n- Pinia 模块化、TypeScript 集成及与 Vuex 的区别\n- Vue Router 4 动态路由与导航守卫\n  \n6. Nuxt3 全栈\n- 混合渲染策略（SSR/SSG/ISR/SWR）\n- useFetch / useAsyncData 服务端数据获取\n- 约定式路由与自动导入\n- 中间件与登录鉴权\n  \n3.3 其他框架\n- Svelte 5 Runes 编译思路 ⭐\n- Solid.js 细粒度响应式 ⭐\n  \n3.4 框架深度对比与选型\n- React vs Vue：渲染机制、响应式原理、性能特征 ⭐⭐⭐\n- SSR 生态对比（Next.js vs Nuxt vs SvelteKit）⭐⭐⭐\n- 选型决策矩阵（团队经验、迁移成本、业务复杂度） ⭐⭐⭐\n  \n3.5 前端场景化算法\n- 深拷贝与结构化克隆（循环引用、Map/Set 边界）⭐⭐⭐⭐\n- LRU / LFU 缓存机制实现 ⭐⭐⭐⭐\n- 虚拟滚动中的二分查找应用 ⭐⭐⭐\n- 前缀树（Trie）在搜索建议中的应用 ⭐⭐⭐\n- 拓扑排序（依赖解析、构建顺序）⭐⭐⭐⭐\n- 布隆过滤器在数据去重中的应用⭐⭐⭐\n  \n\n---\n\n🔵 四、工程化与交付保障\n\n4.1 构建工具\nWebpack\n- Loader 与 Plugin 机制与区别 ⭐⭐⭐⭐\n- 构建优化（持久化缓存、splitChunks、tree shaking）⭐⭐⭐⭐\n- 简单 Loader / Plugin 实现 ⭐⭐\n  \nVite\n- 预构建与 ESM 请求链路 ⭐⭐⭐⭐\n- HMR 原理（与 Webpack 对比）⭐⭐⭐⭐\n- 插件机制与 Rollup 生产构建 ⭐⭐⭐\n- Turbopack 与 Snowpack 对比⭐⭐\n- Turbopack / Rspack 现状 ⭐\n  \n4.2 包管理与项目组织\n- pnpm 硬链接与幽灵依赖 ⭐⭐⭐\n- monorepo（Turborepo 任务编排）⭐⭐⭐\n- 语义化版本与 Changelog 自动化 ⭐⭐\n  \n4.3 研发流程与质量卡点\n- 技术方案评审要点 ⭐⭐⭐\n- Code Review 文化（逻辑 / 边界 / 安全）⭐⭐⭐⭐\n- 工程化质量卡点：代码复杂度控制、依赖审计、代码审计流程 ⭐⭐⭐\n- 分支策略（Trunk-Based）⭐⭐⭐\n- 上线卡点与变更流程 ⭐⭐\n  \n4.4 CI/CD 与灰度发布\n- 流水线设计（Lint → Test → Build → Deploy）⭐⭐⭐\n- 灰度发布策略与特性开关 ⭐⭐⭐⭐\n- 快速回滚机制 ⭐⭐⭐\n  \n4.5 代码规范与升级\n- ESLint / Prettier / Husky 配置 ⭐⭐⭐\n- 依赖安全审计（npm audit、Snyk）⭐⭐\n- 依赖锁定文件一致性策略 ⭐⭐\n- 技术栈迁移（Webpack → Vite）步骤 ⭐⭐⭐\n- 框架大版本升级策略 ⭐⭐\n  \n4.6 测试策略\n- 测试金字塔模型（单元 / 集成 / e2e）⭐⭐⭐⭐\n- Jest / Vitest 核心（mock、spy、异步测试、timer 假参数）\n- 组件测试（RTL / VTU，测试行为而非实现）\n- 端到端测试（Playwright / Cypress 选型）\n- 快照测试的利与弊 ⭐⭐\n- ESLint 7+ 的新规则与自动修复功能⭐⭐\n  \n4.7 组件库与设计系统\n- 组件 API 设计原则（一致性、可组合性）⭐⭐⭐\n- 样式隔离方案（Shadow DOM、Scoped CSS、CSS-in-JS）\n- 文档工程（Storybook）与视觉回归测试（Chromatic）\n- Monorepo 下组件库版本管理（Changesets）\n- Cypress 实时回放与组件测试支持⭐⭐⭐\n  \n4.8 系统设计方法论 ⭐⭐⭐⭐ 【重点新增】\n- 前端五层架构模型：表现层 → 状态层 → 服务层 → 领域层 → 基础设施层\n- 微前端架构设计：事件总线通信、Mediation 中介模式、路由隔离方案\n- SDK 设计规范：Tree Shaking 友好导出、模块按需加载、类型安全设计\n  \n\n---\n\n🟣 五、跨端开发\n\n5.1 小程序深度\n- 双线程架构与 setData 性能优化 ⭐⭐⭐⭐\n- 分包策略与预加载优化 ⭐⭐⭐\n- 服务端渲染与客户端渲染在小程序中的选择 ⭐⭐\n  \n5.2 跨端方案对比\n- Taro vs uni-app vs RN 渲染原理 ⭐⭐⭐\n- 与 WebAssembly 结合的可能性与场景 ⭐⭐\n- 适用场景与选型矩阵 ⭐⭐⭐\n- Flutter 与前端生态的融合（如 FLE）⭐⭐\n  \n\n---\n\n⚪ 六、性能优化与可观测性\n\n6.1 加载性能\n- 关键渲染路径（CRP）优化 ⭐⭐⭐⭐\n- 图片/字体优化（WebP、AVIF、font-display）⭐⭐⭐⭐\n- 预加载/预连接策略 ⭐⭐⭐\n  \n6.2 运行时性能\n- 重绘回流与合成层优化 ⭐⭐⭐\n- 长任务分解（时间切片、scheduler.yield）⭐⭐⭐\n- 虚拟列表实现与防抖节流 ⭐⭐⭐\n- 框架层缓存（memo、computed、useMemo）⭐⭐⭐\n- Web Workers 多线程优化实践⭐⭐⭐\n  \n6.3 监控体系 ⭐⭐⭐⭐⭐ 【PDF 核心补充落地】\n- 监控系统五层架构：数据采集 → 存储 → 分析 → 告警 → 可视化\n- Core Web Vitals 量化指标与优化（LCP ≤ 2.5s / INP ≤ 200ms / CLS ≤ 0.1）⭐⭐⭐⭐\n- 全链路错误捕获（ErrorBoundary + window.onerror + unhandledrejection）⭐⭐⭐⭐\n- 白屏率监控与 Crash 归因 ⭐⭐⭐\n- 告警策略：告警收敛算法、分级标准、去重机制 ⭐⭐⭐\n- 埋点设计与业务监控 ⭐⭐⭐\n- 性能回归卡点与自动化告警 ⭐⭐\n- Real User Monitoring（RUM）与用户体验监控⭐⭐⭐\n  \n\n---\n\n🟤 七、服务端与全栈能力\n\n7.1 Node.js 核心\n- 事件循环与 libuv ⭐⭐⭐\n- Stream 应用（大文件处理、HTTP 响应流）⭐⭐⭐\n- 框架中间件（Express / Koa）⭐⭐⭐\n  \n7.2 BFF 与全栈\n- BFF 接口聚合与降级策略 ⭐⭐⭐⭐\n- Next.js API Routes / Server Actions ⭐⭐⭐\n- 全栈架构设计：API 网关设计、微服务集群、内容分发系统 ⭐⭐⭐\n- Serverless 函数 ⭐⭐\n- Edge Functions 与边缘计算场景⭐⭐⭐\n  \n\n---\n\n🟡 八、计算机基础与安全\n\n8.1 网络\n- HTTP 缓存（强缓存/协商缓存/CDN 缓存层级）⭐⭐⭐⭐\n- HTTPS 混合内容问题与解决方案 ⭐⭐⭐\n- CORS 跨域（预检请求细节、SameSite Cookie 配合）⭐⭐⭐⭐\n- WebSocket 与 HTTP/2 Server Push 原理 ⭐⭐⭐\n- CDN 预热与刷新策略 ⭐⭐\n- QUIC 协议与 HTTP/3 特性⭐⭐⭐\n  \n8.2 安全\n- XSS / CSRF 防御机制与实战案例 ⭐⭐⭐⭐\n- JWT 双 Token 机制（Access/Refresh Token）⭐⭐⭐⭐\n- Cookie 安全属性（SameSite、HttpOnly、Secure）⭐⭐⭐\n- CSP 策略配置 ⭐⭐\n- 点击劫持（Clickjacking）防御与 Frame-ancestors 策略⭐⭐⭐\n  \n\n---\n\n🟣 九、前沿与 AI 加分\n\n9.1 AI 与前端 ⭐⭐⭐ 【RAG 深度补全】\n- AI 辅助编程（Copilot / Cursor）⭐⭐\n- RAG 检索增强生成：BM25 词频检索 vs 向量相似度检索（余弦/欧氏距离） ⭐⭐⭐\n- 向量数据库选型（Faiss IVF_FLAT / Milvus 分片 / Pinecone 压缩） ⭐⭐\n- RAG 前端集成：动态上下文注入、与框架状态管理结合、性能优化 ⭐⭐⭐\n- 界面生成（v0.dev）⭐\n- AgentGPT 与前端智能体开发⭐⭐⭐\n  \n9.2 新运行时与生态 ⭐⭐ 【重要性上调】\n- Bun / Deno vs Node.js：性能特征、启动速度、生态兼容性 ⭐⭐⭐\n- WebAssembly 内存安全模型：线性内存隔离、沙箱隔离、与 JS 共享内存 ⭐⭐⭐\n- Wasm 与前端框架的交互机制及实际应用场景 ⭐⭐\n  \n\n---\n\n🔶 十、职业素养与成长\n\n10.1 团队协作与推动 ⭐⭐⭐⭐ 【量化表达强化】\n- 发现并推动专项（问题 → 方案 → 量化指标）⭐⭐⭐⭐\n- 行为锚定评分法（BARS）：定义可观测的能力等级行为描述 ⭐⭐⭐\n- 跨团队沟通与评审 ⭐⭐⭐\n  \n10.2 技术方案与代码审查 ⭐⭐⭐⭐ 【重点新增】\n- 技术方案评审框架：架构合理性验证、非功能需求覆盖度、风险控制矩阵 ⭐⭐⭐\n- 代码审查标准维度：功能性、代码质量、安全性、测试完整性 ⭐⭐⭐\n- 量化案例表达（STAR 法则 + 量化指标，如“信息漏损率下降 50%”） ⭐⭐⭐⭐\n  \n10.3 心智与成长\n- 压力排解与自我调节 ⭐⭐\n- 知识管理与持续学习习惯 ⭐⭐\n- 技术沉淀与方法论输出 ⭐⭐⭐\n- 技术债务管理与ROI评估⭐⭐⭐\n  \n\n---\n",
+      "content": "知识库：🟢 一、界面与样式工程\n\n1.1 HTML 与可访问性\n- 语义化标签与 ARIA 属性体系 ⭐⭐⭐\n- 可访问性自动化检测（axe-core / Lighthouse 规则） ⭐⭐\n- 键盘导航流设计（Tab Order 与焦点管理） ⭐⭐\n- SEO 基础（meta、结构化数据）⭐⭐\n  \n1.2 CSS 核心布局\n- 盒模型与 BFC ⭐⭐⭐⭐\n- Flexbox 完整用法 ⭐⭐⭐⭐⭐\n- Grid 布局（含 subgrid 对齐）⭐⭐⭐⭐\n- 定位体系与包含块 ⭐⭐⭐\n- 层叠上下文与 z-index ⭐⭐⭐\n  \n1.3 响应式与工程化\n- 媒体查询 / 容器查询 ⭐⭐⭐\n- 移动端适配（viewport、rem/vw、安全区）⭐⭐⭐\n- CSS 工程化选型（Tailwind / CSS Modules）⭐⭐⭐\n- CSS 变量与主题切换 ⭐⭐\n- CSS Houdini API（自定义布局、滤镜等）⭐⭐\n  \n1.4 高性能动画\n- transform / opacity 动画与合成层 ⭐⭐⭐\n- 滚动驱动动画、View Transitions API ⭐⭐\n- Web Animations API（替代传统CSS动画）⭐⭐⭐\n\n---\n\n🟡 二、语言与运行时基础\n\n2.1 ECMAScript 深入\n- 类型系统与隐式转换陷阱 ⭐⭐⭐\n- 作用域 / 闭包 / 执行上下文（变量提升、TDZ）⭐⭐⭐⭐⭐\n- 原型链与继承（含 class 本质）⭐⭐⭐⭐\n- WeakMap / WeakSet 应用场景 ⭐⭐⭐⭐\n- 异步编程-事件循环 宏任务微任务 promise\n  - 手写 Promise.all / race / allSettled / any\n  - async/await 原理（Generator + 自动执行器）\n  - 常见异步顺序 / 并发控制题\n- 模块化（ESM 静态分析、CJS 差异、动态导入）⭐⭐⭐⭐\n  \n2.2 TypeScript 深度\n- 基础类型与泛型推导 ⭐⭐⭐\n- 条件类型、infer、模板字面量类型 ⭐⭐⭐⭐\n- 常用工具类型手写（Partial / Required / Pick / Omit / Record）⭐⭐⭐⭐\n- 类型守卫（in / instanceof / 自定义守卫）与断言函数 ⭐⭐⭐\n- 工具类型实现原理（如 Omit 的 keyof 联合过滤） ⭐⭐⭐\n- TypeScript 5.0+ 新特性（如 satisfies 运算符）⭐⭐⭐\n  \n2.3 浏览器渲染管线\n- DOM / CSSOM / 布局 / 绘制 / 合成完整流程 ⭐⭐⭐⭐\n- 重绘与回流的触发条件及合成层优化实践 ⭐⭐⭐\n- 帧动画与 requestIdleCallback ⭐⭐\n- 从 url 输入到页面渲染完整流程\n- 前端缓存\n  \n2.4 代码设计与架构模式\n- 发布-订阅 / 观察者模式（EventEmitter、Vue 响应式）⭐⭐⭐⭐\n- 策略模式（表单校验器、弹窗策略）⭐⭐⭐\n- 单例模式（全局状态容器、弹窗管理）⭐⭐⭐\n- 装饰器 / 代理模式（HOC、Vue 插件）⭐⭐⭐\n- SOLID 原则在组件中的体现 ⭐⭐\n\n2.5 其他查漏补缺\n- Class get/set & Proxy\n- Reflect API 与元编程⭐⭐\n\n\n---\n🟠 三、框架与全栈应用\n\n3.1 React 体系 ⭐⭐⭐⭐⭐\n1. Hooks 深度\n-  useState/useReducer状态与批量更新机制\n- useEffect/useLayoutEffect执⾏时机差异\n- useCallback/useMemo与闭包陷阱\n- useRef与forwardRef/useImperativeHandle\n- ⾃定义 Hooks 设计与逻辑复\n\n2. 3.1 Fiber 与并发特性\n- 为什么需要 Fiber（解决同步递归不可中断问题）\n- 双缓冲树与 Lane 优先级模型\n- 时间切片与浏览器帧对齐、任务队列调度 ⭐⭐⭐\n- useTransition 与 useDeferredValue\n- Suspense 与 ErrorBoundary 协同（异步加载降级）\n- React Compiler 自动 memoization 原理（原 Forget）\n  \n3. React 各版本新特性\n4. 状态管理\n- Zustand 原理与使用场景\n- Redux Toolkit 核心概念（slice、middleware）\n  \n5. Next.js 全栈（App Router）\n- Server Components 与 Client Components 边界\n- Server Actions 与乐观更新\n- 渲染策略（SSG / ISR / SSR / PPR）\n- 中间件与路由组\n- 虚拟 DOM 与 Diff 算法（Key 的作用、列表渲染优化）\n\n3.2 Vue 体系 ⭐⭐⭐⭐⭐\nvue 渲染流程\n1. 响应式系统\n- Proxy 实现 reactive / ref 及其对比与局限性\n- computed 惰性求值原理\n- effectScope 与避免内存泄漏\n- Vapor Mode 无虚拟 DOM 原理（了解）\n- 自定义渲染器原理 ⭐⭐⭐\n\n2. Composition API\n- setup 与生命周期映射\n- watch / watchEffect 依赖追踪与执行时机差异\n- composables 逻辑复用规范\n  \n3. 编译优化\n- 静态提升与预字符串化\n- PatchFlags 二进制位标记规则与动态节点追踪 ⭐⭐⭐⭐\n- Block Tree 与靶向更新（diff 优化算法） ⭐⭐⭐⭐\n  \n4. todo-vue 原理深挖\n\n5. 状态管理与路由\n- Pinia 模块化、TypeScript 集成及与 Vuex 的区别\n- Vue Router 4 动态路由与导航守卫\n  \n6. Nuxt3 全栈\n- 混合渲染策略（SSR/SSG/ISR/SWR）\n- useFetch / useAsyncData 服务端数据获取\n- 约定式路由与自动导入\n- 中间件与登录鉴权\n  \n3.3 其他框架\n- Svelte 5 Runes 编译思路 ⭐\n- Solid.js 细粒度响应式 ⭐\n  \n3.4 框架深度对比与选型\n- React vs Vue：渲染机制、响应式原理、性能特征 ⭐⭐⭐\n- SSR 生态对比（Next.js vs Nuxt vs SvelteKit）⭐⭐⭐\n- 选型决策矩阵（团队经验、迁移成本、业务复杂度） ⭐⭐⭐\n  \n3.5 前端场景化算法\n- 深拷贝与结构化克隆（循环引用、Map/Set 边界）⭐⭐⭐⭐\n- LRU / LFU 缓存机制实现 ⭐⭐⭐⭐\n- 虚拟滚动中的二分查找应用 ⭐⭐⭐\n- 前缀树（Trie）在搜索建议中的应用 ⭐⭐⭐\n- 拓扑排序（依赖解析、构建顺序）⭐⭐⭐⭐\n- 布隆过滤器在数据去重中的应用⭐⭐⭐\n  \n\n---\n\n🔵 四、工程化与交付保障\n\n4.1 构建工具\nWebpack\n- Loader 与 Plugin 机制与区别 ⭐⭐⭐⭐\n- 构建优化（持久化缓存、splitChunks、tree shaking）⭐⭐⭐⭐\n- 简单 Loader / Plugin 实现 ⭐⭐\n  \nVite\n- 预构建与 ESM 请求链路 ⭐⭐⭐⭐\n- HMR 原理（与 Webpack 对比）⭐⭐⭐⭐\n- 插件机制与 Rollup 生产构建 ⭐⭐⭐\n- Turbopack 与 Snowpack 对比⭐⭐\n- Turbopack / Rspack 现状 ⭐\n  \n4.2 包管理与项目组织\n- pnpm 硬链接与幽灵依赖 ⭐⭐⭐\n- monorepo（Turborepo 任务编排）⭐⭐⭐\n- 语义化版本与 Changelog 自动化 ⭐⭐\n  \n4.3 研发流程与质量卡点\n- 技术方案评审要点 ⭐⭐⭐\n- Code Review 文化（逻辑 / 边界 / 安全）⭐⭐⭐⭐\n- 工程化质量卡点：代码复杂度控制、依赖审计、代码审计流程 ⭐⭐⭐\n- 分支策略（Trunk-Based）⭐⭐⭐\n- 上线卡点与变更流程 ⭐⭐\n  \n4.4 CI/CD 与灰度发布\n- 流水线设计（Lint → Test → Build → Deploy）⭐⭐⭐\n- 灰度发布策略与特性开关 ⭐⭐⭐⭐\n- 快速回滚机制 ⭐⭐⭐\n  \n4.5 代码规范与升级\n- ESLint / Prettier / Husky 配置 ⭐⭐⭐\n- 依赖安全审计（npm audit、Snyk）⭐⭐\n- 依赖锁定文件一致性策略 ⭐⭐\n- 技术栈迁移（Webpack → Vite）步骤 ⭐⭐⭐\n- 框架大版本升级策略 ⭐⭐\n  \n4.6 测试策略\n- 测试金字塔模型（单元 / 集成 / e2e）⭐⭐⭐⭐\n- Jest / Vitest 核心（mock、spy、异步测试、timer 假参数）\n- 组件测试（RTL / VTU，测试行为而非实现）\n- 端到端测试（Playwright / Cypress 选型）\n- 快照测试的利与弊 ⭐⭐\n- ESLint 7+ 的新规则与自动修复功能⭐⭐\n  \n4.7 组件库与设计系统\n- 组件 API 设计原则（一致性、可组合性）⭐⭐⭐\n- 样式隔离方案（Shadow DOM、Scoped CSS、CSS-in-JS）\n- 文档工程（Storybook）与视觉回归测试（Chromatic）\n- Monorepo 下组件库版本管理（Changesets）\n- Cypress 实时回放与组件测试支持⭐⭐⭐\n  \n4.8 系统设计方法论 ⭐⭐⭐⭐ 【重点新增】\n- 前端五层架构模型：表现层 → 状态层 → 服务层 → 领域层 → 基础设施层\n- 微前端架构设计：事件总线通信、Mediation 中介模式、路由隔离方案\n- SDK 设计规范：Tree Shaking 友好导出、模块按需加载、类型安全设计\n  \n\n---\n\n🟣 五、跨端开发\n\n5.1 小程序深度\n- 双线程架构与 setData 性能优化 ⭐⭐⭐⭐\n- 分包策略与预加载优化 ⭐⭐⭐\n- 服务端渲染与客户端渲染在小程序中的选择 ⭐⭐\n  \n5.2 跨端方案对比\n- Taro vs uni-app vs RN 渲染原理 ⭐⭐⭐\n- 与 WebAssembly 结合的可能性与场景 ⭐⭐\n- 适用场景与选型矩阵 ⭐⭐⭐\n- Flutter 与前端生态的融合（如 FLE）⭐⭐\n  \n\n---\n\n⚪ 六、性能优化与可观测性\n\n6.1 加载性能\n- 关键渲染路径（CRP）优化 ⭐⭐⭐⭐\n- 图片/字体优化（WebP、AVIF、font-display）⭐⭐⭐⭐\n- 预加载/预连接策略 ⭐⭐⭐\n  \n6.2 运行时性能\n- 重绘回流与合成层优化 ⭐⭐⭐\n- 长任务分解（时间切片、scheduler.yield）⭐⭐⭐\n- 虚拟列表实现与防抖节流 ⭐⭐⭐\n- 框架层缓存（memo、computed、useMemo）⭐⭐⭐\n- Web Workers 多线程优化实践⭐⭐⭐\n  \n6.3 监控体系 ⭐⭐⭐⭐⭐ 【PDF 核心补充落地】\n- 监控系统五层架构：数据采集 → 存储 → 分析 → 告警 → 可视化\n- Core Web Vitals 量化指标与优化（LCP ≤ 2.5s / INP ≤ 200ms / CLS ≤ 0.1）⭐⭐⭐⭐\n- 全链路错误捕获（ErrorBoundary + window.onerror + unhandledrejection）⭐⭐⭐⭐\n- 白屏率监控与 Crash 归因 ⭐⭐⭐\n- 告警策略：告警收敛算法、分级标准、去重机制 ⭐⭐⭐\n- 埋点设计与业务监控 ⭐⭐⭐\n- 性能回归卡点与自动化告警 ⭐⭐\n- Real User Monitoring（RUM）与用户体验监控⭐⭐⭐\n  \n\n---\n\n🟤 七、服务端与全栈能力\n\n7.1 Node.js 核心\n- 事件循环与 libuv ⭐⭐⭐\n- Stream 应用（大文件处理、HTTP 响应流）⭐⭐⭐\n- 框架中间件（Express / Koa）⭐⭐⭐\n  \n7.2 BFF 与全栈\n- BFF 接口聚合与降级策略 ⭐⭐⭐⭐\n- Next.js API Routes / Server Actions ⭐⭐⭐\n- 全栈架构设计：API 网关设计、微服务集群、内容分发系统 ⭐⭐⭐\n- Serverless 函数 ⭐⭐\n- Edge Functions 与边缘计算场景⭐⭐⭐\n  \n\n---\n\n🟡 八、计算机基础与安全\n\n8.1 网络\n- HTTP 缓存（强缓存/协商缓存/CDN 缓存层级）⭐⭐⭐⭐\n- HTTPS 混合内容问题与解决方案 ⭐⭐⭐\n- CORS 跨域（预检请求细节、SameSite Cookie 配合）⭐⭐⭐⭐\n- WebSocket 与 HTTP/2 Server Push 原理 ⭐⭐⭐\n- CDN 预热与刷新策略 ⭐⭐\n- QUIC 协议与 HTTP/3 特性⭐⭐⭐\n  \n8.2 安全\n- XSS / CSRF 防御机制与实战案例 ⭐⭐⭐⭐\n- JWT 双 Token 机制（Access/Refresh Token）⭐⭐⭐⭐\n- Cookie 安全属性（SameSite、HttpOnly、Secure）⭐⭐⭐\n- CSP 策略配置 ⭐⭐\n- 点击劫持（Clickjacking）防御与 Frame-ancestors 策略⭐⭐⭐\n  \n\n---\n\n🟣 九、前沿与 AI 加分\n\n9.1 AI 与前端 ⭐⭐⭐ 【RAG 深度补全】\n- AI 辅助编程（Copilot / Cursor）⭐⭐\n- RAG 检索增强生成：BM25 词频检索 vs 向量相似度检索（余弦/欧氏距离） ⭐⭐⭐\n- 向量数据库选型（Faiss IVF_FLAT / Milvus 分片 / Pinecone 压缩） ⭐⭐\n- RAG 前端集成：动态上下文注入、与框架状态管理结合、性能优化 ⭐⭐⭐\n- 界面生成（v0.dev）⭐\n- AgentGPT 与前端智能体开发⭐⭐⭐\n  \n9.2 新运行时与生态 ⭐⭐ 【重要性上调】\n- Bun / Deno vs Node.js：性能特征、启动速度、生态兼容性 ⭐⭐⭐\n- WebAssembly 内存安全模型：线性内存隔离、沙箱隔离、与 JS 共享内存 ⭐⭐⭐\n- Wasm 与前端框架的交互机制及实际应用场景 ⭐⭐\n  \n\n---\n\n🔶 十、职业素养与成长\n\n10.1 团队协作与推动 ⭐⭐⭐⭐ 【量化表达强化】\n- 发现并推动专项（问题 → 方案 → 量化指标）⭐⭐⭐⭐\n- 行为锚定评分法（BARS）：定义可观测的能力等级行为描述 ⭐⭐⭐\n- 跨团队沟通与评审 ⭐⭐⭐\n  \n10.2 技术方案与代码审查 ⭐⭐⭐⭐ 【重点新增】\n- 技术方案评审框架：架构合理性验证、非功能需求覆盖度、风险控制矩阵 ⭐⭐⭐\n- 代码审查标准维度：功能性、代码质量、安全性、测试完整性 ⭐⭐⭐\n- 量化案例表达（STAR 法则 + 量化指标，如“信息漏损率下降 50%”） ⭐⭐⭐⭐\n  \n10.3 心智与成长\n- 压力排解与自我调节 ⭐⭐\n- 知识管理与持续学习习惯 ⭐⭐\n- 技术沉淀与方法论输出 ⭐⭐⭐\n- 技术债务管理与ROI评估⭐⭐⭐\n  \n\n---\n",
+      "date": "2026-06-02",
+      "tags": [
+        "前端",
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Vue"
+      ]
+    }
+  ]
 }

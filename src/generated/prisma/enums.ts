@@ -9,7 +9,50 @@
 * 🟢 You can import this file directly.
 */
 
+export const EntryType = {
+  work_experience: 'work_experience',
+  project: 'project',
+  knowledge: 'knowledge',
+  blog: 'blog',
+  travel: 'travel',
+  food: 'food',
+  daily: 'daily',
+  other: 'other'
+} as const
+
+export type EntryType = (typeof EntryType)[keyof typeof EntryType]
 
 
-// This file is empty because there are no enums in the schema.
-export {}
+export const EntryStatus = {
+  draft: 'draft',
+  published: 'published',
+  archived: 'archived'
+} as const
+
+export type EntryStatus = (typeof EntryStatus)[keyof typeof EntryStatus]
+
+
+export const ContentType = {
+  markdown: 'markdown',
+  rich_text: 'rich_text',
+  image: 'image',
+  video: 'video',
+  audio: 'audio',
+  file: 'file'
+} as const
+
+export type ContentType = (typeof ContentType)[keyof typeof ContentType]
+
+
+export const ModuleName = {
+  resume: 'resume',
+  timeline: 'timeline',
+  projects: 'projects',
+  knowledge: 'knowledge',
+  blog: 'blog',
+  travel: 'travel',
+  lifestyle: 'lifestyle',
+  games: 'games'
+} as const
+
+export type ModuleName = (typeof ModuleName)[keyof typeof ModuleName]

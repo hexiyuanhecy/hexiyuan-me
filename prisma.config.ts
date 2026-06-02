@@ -5,8 +5,10 @@ export default defineConfig({
   schema: "prisma/schema.prisma",
   migrations: {
     path: "prisma/migrations",
+    seed: "node ./prisma/seed.js",
   },
   datasource: {
+    provider: "sqlite",
     url: "file:./prisma/dev.db",
   },
 });

@@ -8,9 +8,17 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/Profile'
-export type * from './models/Experience'
+export type * from './models/User'
+export type * from './models/Entry'
+export type * from './models/TextContent'
+export type * from './models/EntryModule'
+export type * from './models/WorkExperience'
 export type * from './models/Project'
-export type * from './models/TimelineItem'
-export type * from './models/KnowledgeArticle'
+export type * from './models/Knowledge'
+export type * from './models/Travel'
+export type * from './models/Food'
+export type * from './models/Daily'
+export type * from './models/Category'
+export type * from './models/Tag'
+export type * from './models/EntryTag'
 export type * from './commonInputTypes'

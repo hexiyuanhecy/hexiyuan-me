@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { loadData, saveData } from '@/lib/store';
+import { prisma } from '@/lib/prisma';
 
 function generateSlug(title: string): string {
   return title
@@ -24,25 +24,16 @@ function analyzeContent(content: string) {
     const period = periodMatch ? periodMatch[0] : yearMatch ? `${yearMatch[0]}-至今` : '';
 
     results.push({
-      type: 'experience',
+      type: 'work_experience',
       data: {
-        period: period,
-        company: company,
-        role: role,
+        period,
+        company,
+        role,
         description: content,
         techStack: ['React', 'Next.js', 'TypeScript'],
-        profileId: '1',
+        startDate: yearMatch ? `${yearMatch[1]}-01-01` : undefined,
       },
-    });
-
-    results.push({
-      type: 'timeline',
-      data: {
-        year: yearMatch ? yearMatch[1] : new Date().getFullYear().toString(),
-        title: `加入${company}`,
-        description: content,
-        type: 'work',
-      },
+      suggested_modules: ['resume', 'timeline'],
     });
   }
 
@@ -58,24 +49,13 @@ function analyzeContent(content: string) {
     results.push({
       type: 'project',
       data: {
-        slug: generateSlug(content.slice(0, 30)),
-        title: content.slice(0, 30) + (content.length > 30 ? '...' : ''),
+        title: content.slice(0, 50) + (content.length > 50 ? '...' : ''),
         description: content,
         techStack: techStack.length > 0 ? techStack : ['React', 'TypeScript'],
         highlights: ['项目实现', '功能完成'],
         period: periodMatch ? periodMatch[0] : new Date().getFullYear().toString(),
       },
-    });
-
-    const yearMatch = content.match(/(\d{4})/);
-    results.push({
-      type: 'timeline',
-      data: {
-        year: yearMatch ? yearMatch[1] : new Date().getFullYear().toString(),
-        title: '完成项目',
-        description: content.slice(0, 50),
-        type: 'project',
-      },
+      suggested_modules: ['projects', 'timeline'],
     });
   }
 
@@ -89,30 +69,36 @@ function analyzeContent(content: string) {
     results.push({
       type: 'knowledge',
       data: {
-        slug: generateSlug(content.slice(0, 30)),
-        title: content.slice(0, 30) + (content.length > 30 ? '...' : ''),
+        title: content.slice(0, 50) + (content.length > 50 ? '...' : ''),
         description: content,
         content: content,
-        date: new Date().toISOString().slice(0, 10),
         tags: tags.length > 0 ? tags : ['前端'],
       },
+      suggested_modules: ['knowledge'],
     });
   }
 
-  if (lowerContent.includes('成就') || lowerContent.includes('获奖') || lowerContent.includes('荣誉')) {
+  if (lowerContent.includes('成就') || lowerContent.includes('获奖') || lowerContent.includes('荣誉') || lowerContent.includes('证书')) {
     const yearMatch = content.match(/(\d{4})/);
     results.push({
-      type: 'timeline',
+      type: 'achievement',
       data: {
-        year: yearMatch ? yearMatch[1] : new Date().getFullYear().toString(),
-        title: '获得成就',
+        title: content.slice(0, 30) + (content.length > 30 ? '...' : ''),
         description: content,
-        type: 'achievement',
+        year: yearMatch ? yearMatch[1] : new Date().getFullYear().toString(),
       },
+      suggested_modules: ['timeline'],
     });
   }
 
-  return results;
+  return results.length > 0 ? results : [{
+    type: 'other',
+    data: {
+      title: content.slice(0, 30) + (content.length > 30 ? '...' : ''),
+      description: content,
+    },
+    suggested_modules: ['timeline'],
+  }];
 }
 
 export async function POST(request: Request) {
@@ -124,7 +110,6 @@ export async function POST(request: Request) {
     }
 
     const analyzed = analyzeContent(content);
-    const data = loadData();
     const created: any = {
       experiences: [],
       projects: [],
@@ -133,47 +118,137 @@ export async function POST(request: Request) {
     };
 
     for (const item of analyzed) {
-      if (item.type === 'experience') {
-        const experience = {
-          id: Date.now().toString(),
-          ...item.data,
-        };
-        data.profile.experiences.push(experience);
-        created.experiences.push(experience);
+      if (item.type === 'work_experience') {
+        const entry = await prisma.entry.create({
+          data: {
+            userId: 'user-1',
+            type: 'work_experience',
+            status: 'published',
+            title: item.data.role || item.data.company || '工作经历',
+            slug: generateSlug(item.data.role || item.data.company || 'experience') + '-' + Date.now().toString(36),
+            summary: item.data.description,
+            contentType: 'markdown',
+            occurredAt: item.data.startDate ? new Date(item.data.startDate) : undefined,
+            workExp: {
+              create: {
+                company: item.data.company,
+                role: item.data.role,
+                startDate: item.data.startDate ? new Date(item.data.startDate) : new Date(),
+                techStack: JSON.stringify(item.data.techStack),
+              },
+            },
+            modules: {
+              create: [
+                { moduleName: 'resume' },
+                { moduleName: 'timeline' },
+              ],
+            },
+          },
+        });
+        created.experiences.push(entry);
       }
 
       if (item.type === 'project') {
-        const project = {
-          id: Date.now().toString(),
-          ...item.data,
-          slug: item.data.slug + '-' + Date.now().toString(36),
-        };
-        data.projects.push(project);
-        created.projects.push(project);
-      }
-
-      if (item.type === 'timeline') {
-        const timelineItem = {
-          id: Date.now().toString(),
-          ...item.data,
-        };
-        data.timeline.push(timelineItem);
-        data.timeline.sort((a, b) => parseInt(b.year) - parseInt(a.year));
-        created.timelineItems.push(timelineItem);
+        const entry = await prisma.entry.create({
+          data: {
+            userId: 'user-1',
+            type: 'project',
+            status: 'published',
+            title: item.data.title,
+            slug: generateSlug(item.data.title) + '-' + Date.now().toString(36),
+            summary: item.data.description,
+            contentType: 'markdown',
+            project: {
+              create: {
+                name: item.data.title,
+                description: item.data.description,
+                techStack: JSON.stringify(item.data.techStack),
+                highlights: JSON.stringify(item.data.highlights),
+              },
+            },
+            modules: {
+              create: [
+                { moduleName: 'projects' },
+                { moduleName: 'timeline' },
+              ],
+            },
+          },
+        });
+        created.projects.push(entry);
       }
 
       if (item.type === 'knowledge') {
-        const article = {
-          id: Date.now().toString(),
-          ...item.data,
-          slug: item.data.slug + '-' + Date.now().toString(36),
-        };
-        data.knowledge.push(article);
-        created.knowledgeArticles.push(article);
+        const entry = await prisma.entry.create({
+          data: {
+            userId: 'user-1',
+            type: 'knowledge',
+            status: 'published',
+            title: item.data.title,
+            slug: generateSlug(item.data.title) + '-' + Date.now().toString(36),
+            summary: item.data.description,
+            contentType: 'markdown',
+            textContent: {
+              create: {
+                content: item.data.content,
+                excerpt: item.data.description,
+              },
+            },
+            knowledge: {
+              create: {
+                tags: JSON.stringify(item.data.tags),
+              },
+            },
+            modules: {
+              create: [
+                { moduleName: 'knowledge' },
+              ],
+            },
+          },
+        });
+        created.knowledgeArticles.push(entry);
+      }
+
+      if (item.type === 'achievement') {
+        const entry = await prisma.entry.create({
+          data: {
+            userId: 'user-1',
+            type: 'other',
+            status: 'published',
+            title: item.data.title,
+            slug: generateSlug(item.data.title) + '-' + Date.now().toString(36),
+            summary: item.data.description,
+            contentType: 'markdown',
+            occurredAt: new Date(`${item.data.year}-01-01`),
+            modules: {
+              create: [
+                { moduleName: 'timeline' },
+              ],
+            },
+          },
+        });
+        created.timelineItems.push(entry);
+      }
+
+      if (item.type === 'other') {
+        const entry = await prisma.entry.create({
+          data: {
+            userId: 'user-1',
+            type: 'other',
+            status: 'published',
+            title: item.data.title,
+            slug: generateSlug(item.data.title) + '-' + Date.now().toString(36),
+            summary: item.data.description,
+            contentType: 'markdown',
+            modules: {
+              create: [
+                { moduleName: 'timeline' },
+              ],
+            },
+          },
+        });
+        created.timelineItems.push(entry);
       }
     }
-
-    saveData(data);
 
     return NextResponse.json({ success: true, analyzed, created });
   } catch (error) {

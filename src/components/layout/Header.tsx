@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X, GitBranch, ExternalLink, Sparkles, ChevronRight } from 'lucide-react';
+import { Menu, X, GitBranch, ExternalLink, Sparkles, ChevronRight, Sun, Moon } from 'lucide-react';
 import Link from 'next/link';
+import { useTheme } from '@/lib/theme-provider';
 
 const navItems = [
   { label: '首页', href: '/' },
@@ -17,6 +18,7 @@ const navItems = [
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,6 +57,13 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-3">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-all"
+              title={theme === 'dark' ? '切换到亮色模式' : '切换到暗色模式'}
+            >
+              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </button>
             <a
               href="https://github.com/hexiyuan"
               target="_blank"

@@ -2,61 +2,36 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [v1.1.0] - 2026-06-02
+
+**Commit:** `c51b46f`
 
 ### Added
 
-- ✅ **智能导入系统** (`/import`)
-  - 输入内容自动分析分类
-  - 支持工作经历、项目、知识分享、成就等类型识别
-  - 自动同步到简历、项目、时间轴、知识库模块
+- ✅ **项目详情页** (`/projects/:slug`)
+  - 项目详细信息展示
+  - 技术栈标签
+  - 项目亮点列表
+  - Markdown 内容支持
 
-- ✅ **API 后端** (`src/app/api/`)
-  - `profile`: 个人信息 CRUD
-  - `projects`: 项目数据管理
-  - `timeline`: 时间轴数据管理
-  - `knowledge`: 知识库文章管理
-  - `import`: 智能导入分析
+- ✅ **文章详情页** (`/knowledge/:slug`)
+  - Markdown 解析渲染
+  - 自动生成目录（TOC）
+  - 平滑滚动导航
+  - 标签展示
 
-- ✅ **页面模块**
-  - `/`: 首页 - 个人简介、精选项目、统计数据
-  - `/resume`: 简历页 - 工作经历时间轴
-  - `/projects`: 项目列表 - 卡片网格展示
-  - `/timeline`: 成长时间轴 - 个人历程记录
-  - `/knowledge`: 知识库 - 技术文章列表
-  - `/avatar`: AI 分身 - 聊天机器人界面
+- ✅ **主题切换**
+  - 亮色/暗色模式切换
+  - 系统主题自动检测
+  - localStorage 持久化
 
-- ✅ **UI 设计升级**
-  - 深色主题配色（紫色主色调）
-  - 玻璃拟态效果 (glass morphism)
-  - 渐变文字与发光效果
-  - 鼠标跟随光效
-  - 流畅动画过渡效果
+- ✅ **Markdown 支持**
+  - 集成 marked 库
+  - 支持文章内容渲染
 
 ### Fixed
 
-- ✅ 修复智能导入按钮链接问题
-- ✅ 修复 hydration mismatch 时间格式问题
-- ✅ 修复路由跳转问题
-
-### Technical Stack
-
-- Next.js 16 (App Router)
-- TypeScript
-- Tailwind CSS 4 + shadcn/ui
-- lucide-react 图标库
-- 本地文件存储 (temp-data.json)
-
----
-
-## [v1.0.1] - 2026-06-02
-
-**Commit:** `f9b85f2`
-
-### Documentation
-
-- 添加 CHANGELOG.md 记录项目变更历史
-- 绑定 commit ID 便于追溯
+- 修复智能导入按钮链接问题
 
 ---
 

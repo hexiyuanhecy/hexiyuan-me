@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v1.4.0] - 2026-06-02
+
+**Commit:** `TBD`
+
+### Added
+
+- ✅ **删除功能**（管理后台）
+  - 一键删除条目
+  - 二次确认弹窗防止误删
+  - 自动清理关联数据（EntryModule、EntryTag、TextContent、子表）
+
+### Documentation
+
+- ✅ 更新 `CLAUDE.md` - 记录删除功能和权限控制
+- ✅ 更新 `PRD.md` - 补充管理后台功能描述
+
+---
+
 ## [v1.3.0] - 2026-06-02
 
 **Commit:** `ca954ac`

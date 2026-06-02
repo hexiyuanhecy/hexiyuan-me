@@ -15,8 +15,21 @@ All notable changes to this project will be documented in this file.
 
 ### Documentation
 
-- ✅ 更新 `CLAUDE.md` - 记录删除功能和权限控制
+- ✅ **重写 `CLAUDE.md`** - 规范为真正的 Markdown 文档
+  - 清晰的权限控制体系（管理员 vs 普通访客）
+  - 完整的功能模块与路由全景
+  - 数据库设计与枚举定义
+  - 智能导入功能设计
+  - 管理后台功能列表
+  - 功能实现状态追踪
 - ✅ 更新 `PRD.md` - 补充管理后台功能描述
+
+### 权限体系
+
+| 角色 | 权限范围 |
+|------|----------|
+| **普通访客** | 浏览所有页面 + AI 对话 |
+| **管理员** | 完整 CRUD（登录后） |
 
 ---
 

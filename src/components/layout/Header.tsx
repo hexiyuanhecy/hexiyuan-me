@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, GitBranch, ExternalLink, Sparkles, ChevronRight, Sun, Moon } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useTheme } from '@/lib/theme-provider';
 
 const navItems = [
@@ -19,6 +20,7 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +29,11 @@ export function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === '/';
+    return pathname.startsWith(href);
+  };
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -48,10 +55,16 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="relative px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-all duration-200 group"
+                className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 group ${
+                  isActive(item.href)
+                    ? 'text-foreground bg-primary/10'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-secondary/50'
+                }`}
               >
                 {item.label}
-                <ChevronRight className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <ChevronRight className={`absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 transition-opacity ${
+                  isActive(item.href) ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                }`} />
               </Link>
             ))}
           </nav>
@@ -104,7 +117,11 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="px-4 py-3 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-all flex items-center justify-between"
+                  className={`px-4 py-3 rounded-lg text-sm font-medium transition-all flex items-center justify-between ${
+                    isActive(item.href)
+                      ? 'text-foreground bg-primary/10'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-secondary/50'
+                  }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.label}

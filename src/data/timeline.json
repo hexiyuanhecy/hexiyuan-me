@@ -1,0 +1,44 @@
+[
+  {
+    "year": "2019",
+    "title": "加入某头部电商平台",
+    "description": "开启前端开发职业生涯，参与大型电商系统开发",
+    "type": "work"
+  },
+  {
+    "year": "2020",
+    "title": "技术负责人",
+    "description": "带领团队完成核心业务模块重构，性能提升 30%",
+    "type": "work"
+  },
+  {
+    "year": "2021",
+    "title": "电商平台重构",
+    "description": "主导百万级用户平台前端架构升级",
+    "type": "project"
+  },
+  {
+    "year": "2022",
+    "title": "加入某独角兽企业",
+    "description": "担任高级前端工程师，负责核心产品架构设计",
+    "type": "work"
+  },
+  {
+    "year": "2023",
+    "title": "数据可视化平台",
+    "description": "完成企业级数据可视化解决方案",
+    "type": "project"
+  },
+  {
+    "year": "2024",
+    "title": "AI 智能助手",
+    "description": "基于大语言模型构建智能对话系统",
+    "type": "project"
+  },
+  {
+    "year": "2024",
+    "title": "技术博主",
+    "description": "开始在技术社区分享前端技术经验",
+    "type": "achievement"
+  }
+]

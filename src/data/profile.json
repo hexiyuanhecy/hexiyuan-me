@@ -1,0 +1,32 @@
+{
+  "name": "何西元",
+  "title": "高级前端工程师",
+  "bio": "专注于 Web 前端开发，热爱技术创新与知识分享",
+  "location": "杭州",
+  "email": "contact@hexiyuan.me",
+  "links": {
+    "github": "https://github.com/hexiyuan",
+    "linkedin": "https://linkedin.com/in/hexiyuan"
+  },
+  "experience": [
+    {
+      "period": "2022-至今",
+      "company": "某独角兽 SaaS 企业",
+      "role": "高级前端工程师",
+      "description": "负责核心产品架构设计与性能优化",
+      "techStack": ["React", "TypeScript", "微前端"]
+    },
+    {
+      "period": "2019-2022",
+      "company": "某头部电商平台",
+      "role": "前端开发工程师",
+      "description": "参与大型电商系统开发，用户量级达百万",
+      "techStack": ["Vue", "Node.js", "Webpack"]
+    }
+  ],
+  "skills": {
+    "frontend": ["React", "Next.js", "Vue", "TypeScript", "Tailwind CSS"],
+    "backend": ["Node.js", "Express", "MongoDB", "Redis"],
+    "devops": ["Docker", "CI/CD", "AWS", "Vercel"]
+  }
+}

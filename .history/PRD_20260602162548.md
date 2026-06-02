@@ -1,0 +1,202 @@
+好的，以下是为你的个人网站定制的 **产品需求文档（PRD）**，可直接用于指导 Claude Code 开发。
+
+---
+
+# 产品需求文档（PRD）—— 何西元个人数字花园
+
+**版本**：v2.0  
+**更新时间**：2026-06-02  
+**作者**：何西元（AI 辅助生成）  
+**状态**：MVP 待开发
+
+---
+
+## 一、产品概述
+
+### 1.1 产品愿景
+打造一个**全栈、智能、有温度**的个人数字花园，既是求职利器，又是个人知识资产与 AI 分身实验室。让面试官或访客能通过文字对话、交互式简历和动态内容，全方位了解“我是谁”。
+
+### 1.2 核心差异化
+- **AI 数字分身**：基于真实经历脱敏后的对话代理，可模拟面试。
+- **智能导入**：粘贴一段文本，AI 自动识别内容类型（工作/项目/文章），分发到对应模块展示。
+- **全栈动态**：所有内容可通过管理后台增删改查，无需修改代码。
+
+### 1.3 目标用户
+- **主要**：面试官、潜在雇主或技术合作伙伴。
+- **次要**：技术同好、朋友、未来的自己。
+
+---
+
+## 二、功能规格
+
+### 2.1 MVP 必须（V1.0）
+
+#### F1. 全局特性
+- 响应式设计（移动端优先），支持暗色/亮色模式切换。
+- 统一的设计令牌（Tailwind 内建色系、rounded-2xl 圆角、微阴影过渡）。
+- PWA 基础支持（manifest.json + service worker 离线缓存）。
+
+#### F2. 首页 `/`
+- 头像、一句话介绍、技能标签云。
+- 三大板块入口卡片：专业经历、AI 对话、知识库。
+- 全局导航栏 + 移动端汉堡菜单。
+
+#### F3. 技术简历与项目 `专业` 板块
+- **简历时间轴 `/resume`**：垂直时间轴，支持按年份筛选，数据从数据库动态加载。
+- **项目作品集 `/projects`**：卡片网格展示，卡片含技术栈标签、简介、链接按钮。
+- **项目详情 `/projects/[slug]`**：Markdown 渲染，基于数据库条目。
+- **技能雷达图**：纯 CSS/SVG 实现，数据可配置。
+
+#### F4. AI 数字分身 `/avatar`
+- 流式聊天界面（气泡样式，打字机效果，自动滚动到底部）。
+- 后端 API `/api/chat` 调用 DeepSeek API，系统提示词从 `CLAUDE.md` 中定义的“何西元 AI 分身”设定加载。
+- 对话支持 Enter 发送，Shift+Enter 换行。
+- 可重置会话，保留最近 N 轮上下文。
+- 访客首次进入有欢迎语引导。
+
+#### F5. 前端知识库 `/knowledge`
+- 文章列表 `/knowledge`：分类卡片，支持按分类筛选。
+- 文章详情 `/knowledge/[slug]`：MDX 渲染，含目录导航（TOC）。
+- 数据来源：数据库 `entries` 表中 `type = 'knowledge'` 的条目。
+
+#### F6. 智能导入（全栈核心）`/import`
+- 一个文本输入框 + 文件上传按钮（支持 .txt/.md）。
+- 提交后，后端 `/api/import` 调用 DeepSeek 分析内容类型：
+  - **work_experience** → 自动追加到简历时间轴、工作经历区。
+  - **project** → 追加到项目作品集。
+  - **knowledge** → 追加到知识库。
+  - **blog** → 追加到博客（若有该模块）。
+- 导入成功后，前端显示识别结果，并提供“预览/撤销”入口。
+
+#### F7. 管理后台 `/admin`（简易版）
+- 列表所有 entries，支持编辑（title, content, metadata）和删除。
+- 页面仅持有密码者（环境变量 `ADMIN_PASSWORD`）通过简单验证后访问，无需复杂认证。
+
+---
+
+### 2.2 后续版本（V2.0+）
+- 声音克隆（Hume AI / ElevenLabs）与虚拟形象（HeyGen / D-ID）。
+- 博客/旅行攻略模块（地图可视化）。
+- 成长时间轴（童年至现在）。
+- AI 年度报告生成。
+- 访问统计仪表盘。
+
+---
+
+## 三、技术方案
+
+| 层级 | 选型 | 说明 |
+| :--- | :--- | :--- |
+| 前端框架 | Next.js 14 App Router + TypeScript + Tailwind CSS | 最流行生态，与 Vercel 无缝部署 |
+| 后端 | Next.js API Routes + Server Actions | 无需额外服务器 |
+| 数据库 ORM | Prisma + SQLite | 零配置，后续可平滑升级 PostgreSQL |
+| AI SDK | Vercel AI SDK (`ai` + `@ai-sdk/deepseek`) | 流式对话支持 |
+| AI 分析 | DeepSeek API （同账号，用已有额度） | 文本分类与结构化提取 |
+| 内容渲染 | MDX (next-mdx-remote) | 知识库与项目详情 |
+| 部署 | Vercel + Turso/SQLite (本地开发用 `file:./dev.db`) | 免费层足够个人用 |
+| 代码规范 | ESLint + Prettier，项目根 `CLAUDE.md` 记录约定 | 让 AI 遵循统一风格 |
+
+---
+
+## 四、数据库设计（Prisma Schema 核心）
+
+```prisma
+model Entry {
+  id        String   @id @default(uuid())
+  type      EntryType
+  title     String
+  slug      String   @unique
+  content   String   // Markdown 原文
+  metadata  Json?    // 结构化字段（公司、技术栈、日期等）
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum EntryType {
+  work_experience
+  project
+  knowledge
+  blog
+  other
+}
+```
+
+- 各模块通过 `type` 过滤查询展示。
+- `metadata` JSON 字段存储各类型特有属性（如工作经历的 `company`、`role`、`start_date`）。
+
+---
+
+## 五、智能导入 AI 提示词设计
+
+```text
+你是一个内容分类助手。分析以下文本，判断属于哪种类型，输出严格 JSON（不含其他文字）。
+
+类型选项：work_experience, project, knowledge, blog, other
+
+对应字段：
+- work_experience: { company, role, start_date, end_date, description, tech_stack[] }
+- project: { name, description, tech_stack[], link, highlights[] }
+- knowledge: { title, category, tags[], content_md }
+- blog: { title, tags[], content_md }
+
+文本内容：
+---
+{user_input}
+---
+
+脱敏要求：禁止提取真实姓名、具体薪资、身份证号等隐私。
+```
+
+---
+
+## 六、信息架构与路由
+
+```
+/              首页
+/resume        简历时间轴
+/projects       项目列表
+/projects/[slug] 项目详情
+/avatar         AI 对话
+/knowledge      知识库列表
+/knowledge/[slug] 文章详情
+/import         智能导入
+/admin          管理后台
+/api/chat       AI 对话接口
+/api/import     智能导入接口
+```
+
+---
+
+## 七、设计原则（UX）
+
+- **信息层级**：每个页面有清晰的视觉重心（标题→图表→详情）。
+- **情感化**：AI 对话使用“正在输入...”动画，成功/失败状态有友好反馈。
+- **可访问性**：所有交互元素满足 WCAG AA 级对比度，支持键盘导航。
+- **无廉价 AI 感**：避免过度使用默认的渐变阴影，使用干净留白、统一圆角与微动效。
+
+---
+
+## 八、MVP 开发里程碑
+
+| 阶段 | 任务 | 预计时间 |
+| :--- | :--- | :--- |
+| 1. 环境搭建 | 初始化 Next.js 项目，配置 Prisma + SQLite，安装 Claude Code 官方 skills | 1 小时 |
+| 2. 骨架生成 | 用 Claude Code 生成路由、布局、全局组件（导航/页脚/暗色切换） | 1 天 |
+| 3. 简历+项目 | 实现时间轴、卡片网格、详情页，接数据库查询 | 1 天 |
+| 4. AI 对话 | 实现 `/avatar` 页面 + `/api/chat`，流式对话，接入分身人设 | 1 天 |
+| 5. 知识库 | MDX 渲染列表+详情，数据从数据库读取 | 0.5 天 |
+| 6. 智能导入 | `/import` 前端 + 后端 AI 分析，自动分发入库 | 1 天 |
+| 7. 管理后台 | 简易后台，列表/编辑/删除功能 | 0.5 天 |
+| 8. 部署上线 | 推 GitHub，部署 Vercel，配置域名 | 1 小时 |
+
+---
+
+## 九、下一步开发指令（喂给 Claude Code）
+
+当 `CLAUDE.md` 已配置、Skills 已安装，在终端使用 `claude` 对话，粘贴：
+
+> 根据项目 CLAUDE.md 和 PRD 规划，现在开始 MVP 开发。先输出完整的文件树和路由方案让我确认，然后按里程碑顺序生成所有页面组件、API 路由、Prisma schema 和 seed 脚本。注意：所有数据从数据库读取，不再使用静态 JSON。
+
+---
+
+这份 PRD 可以另存为 `PRD.md` 放在项目根目录，Claude Code 会自动读取。准备开始吗？有任何模块需要我细化，随时说。

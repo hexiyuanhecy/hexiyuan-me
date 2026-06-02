@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "e-commerce-platform",
+    "title": "电商平台前端重构",
+    "description": "主导百万级用户电商平台的前端架构升级，从单体应用迁移到微前端架构",
+    "techStack": ["React", "Next.js", "Redux Toolkit", "Tailwind CSS"],
+    "highlights": ["性能提升 40%", "首屏加载优化至 1.5s", "代码覆盖率达 85%"],
+    "github": "https://github.com/hexiyuan/ecommerce",
+    "period": "2021"
+  },
+  {
+    "slug": "ai-chatbot",
+    "title": "AI 智能助手",
+    "description": "基于大语言模型构建的智能对话系统，支持多轮对话与知识检索",
+    "techStack": ["Vercel AI SDK", "DeepSeek", "Next.js", "TypeScript"],
+    "highlights": ["流式响应", "多模态支持", "上下文记忆"],
+    "github": "https://github.com/hexiyuan/aichat",
+    "period": "2024"
+  },
+  {
+    "slug": "data-visualization",
+    "title": "数据可视化平台",
+    "description": "企业级数据可视化解决方案，支持多种图表类型与实时数据更新",
+    "techStack": ["ECharts", "D3.js", "React", "WebSocket"],
+    "highlights": ["实时数据推送", "响应式布局", "自定义主题"],
+    "github": "https://github.com/hexiyuan/dataviz",
+    "period": "2023"
+  },
+  {
+    "slug": "mobile-app",
+    "title": "跨平台移动应用",
+    "description": "基于 React Native 开发的跨平台移动应用，覆盖 iOS 与 Android",
+    "techStack": ["React Native", "TypeScript", "Redux", "NativeBase"],
+    "highlights": ["代码复用率 90%", "性能接近原生", "离线支持"],
+    "github": "https://github.com/hexiyuan/mobile",
+    "period": "2022"
+  }
+]

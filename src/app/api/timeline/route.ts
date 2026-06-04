@@ -1,28 +1,42 @@
 import { NextResponse } from 'next/server';
-import { loadData, saveData } from '@/lib/store';
+import { PrismaClient } from '@/generated/prisma';
 
-export async function GET() {
-  try {
-    const data = loadData();
-    return NextResponse.json(data.timeline);
-  } catch (error) {
-    return NextResponse.json({ error: 'Failed to get timeline' }, { status: 500 });
-  }
-}
+const prisma = new PrismaClient();
 
-export async function POST(request: Request) {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const type = searchParams.get('type');
+
   try {
-    const itemData = await request.json();
-    const data = loadData();
-    const newItem = {
-      id: Date.now().toString(),
-      ...itemData,
+    const where: any = {
+      status: 'published',
+      modules: {
+        some: { moduleName: 'timeline' },
+      },
     };
-    data.timeline.push(newItem);
-    data.timeline.sort((a, b) => parseInt(b.year) - parseInt(a.year));
-    saveData(data);
-    return NextResponse.json(newItem);
+
+    if (type && type !== 'all') {
+      where.type = type;
+    }
+
+    const entries = await prisma.entry.findMany({
+      where,
+      include: {
+        textContent: true,
+        workExp: true,
+        project: true,
+        knowledge: true,
+        travel: true,
+        lifestyle: true,
+      },
+      orderBy: [
+        { occurredAt: 'desc' },
+        { createdAt: 'desc' },
+      ],
+    });
+
+    return NextResponse.json(entries);
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to create timeline item' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to fetch timeline' }, { status: 500 });
   }
 }

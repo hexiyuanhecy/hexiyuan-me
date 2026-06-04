@@ -1,0 +1,90 @@
+[
+  {
+    "keywords": ["技术栈", "会什么", "技术", "前端", "React"],
+    "answer": "我主要用 React、Next.js、TypeScript、Tailwind CSS，也玩过 Vue 和 Node.js。"
+  },
+  {
+    "keywords": ["工作", "经历", "在哪", "公司"],
+    "answer": "毕业后在某头部电商干了 3 年，后来去了一家独角兽 SaaS 公司，主要做飞书生态的前端开发。"
+  },
+  {
+    "keywords": ["项目", "做过什么", "作品"],
+    "answer": "做过企业级低代码平台、电商前端架构升级等项目，都放在 /projects 页面了。"
+  },
+  {
+    "keywords": ["简历", "resume", "工作经历"],
+    "answer": "你可以访问 /resume 页面查看详细的工作经历和技能。"
+  },
+  {
+    "keywords": ["你好", "hi", "hello"],
+    "answer": "你好！我是何西元的 AI 数字分身，很高兴认识你！"
+  },
+  {
+    "keywords": ["你是谁", "身份"],
+    "answer": "我是何西元的 AI 数字分身，一个前端工程师的智能助手。"
+  },
+  {
+    "keywords": ["学历", "教育", "毕业"],
+    "answer": "何西元毕业于计算机相关专业，2019年进入互联网行业。"
+  },
+  {
+    "keywords": ["爱好", "兴趣"],
+    "answer": "除了技术，他喜欢旅行、阅读和探索新技术。"
+  },
+  {
+    "keywords": ["联系方式", "联系"],
+    "answer": "你可以通过网站上的 GitHub 或 LinkedIn 链接联系他。"
+  },
+  {
+    "keywords": ["react hooks", "hooks"],
+    "answer": "何西元熟练使用 React Hooks，包括 useState、useEffect、useContext、useReducer 等。他擅长自定义 hooks 来复用状态逻辑。"
+  },
+  {
+    "keywords": ["nextjs", "next"],
+    "answer": "他精通 Next.js，包括 App Router、Server Components、API Routes、Static Generation 和 SSR 等核心特性。"
+  },
+  {
+    "keywords": ["typescript", "ts"],
+    "answer": "TypeScript 是他的主力语言，擅长类型安全、泛型、装饰器等高级特性，能有效提升代码质量和开发效率。"
+  },
+  {
+    "keywords": ["性能优化", "优化"],
+    "answer": "他有丰富的性能优化经验，包括代码分割、懒加载、图片优化、缓存策略、Webpack 配置优化等。"
+  },
+  {
+    "keywords": ["微前端", "module federation"],
+    "answer": "曾参与微前端架构设计，使用 Module Federation 实现应用隔离和共享模块。"
+  },
+  {
+    "keywords": ["状态管理", "redux", "zustand"],
+    "answer": "熟悉 Redux、Zustand、Jotai 等状态管理方案，能根据项目规模选择合适的方案。"
+  },
+  {
+    "keywords": ["组件库", "设计系统"],
+    "answer": "有设计系统和组件库开发经验，注重可复用性、可扩展性和设计一致性。"
+  },
+  {
+    "keywords": ["代码质量", "规范"],
+    "answer": "重视代码质量，使用 ESLint、Prettier、Husky 等工具保证代码规范，编写单元测试和集成测试。"
+  },
+  {
+    "keywords": ["团队协作", "code review"],
+    "answer": "善于团队协作，使用 Git 进行版本控制，参与 Code Review，推动技术规范和最佳实践。"
+  },
+  {
+    "keywords": ["解决问题", "调试"],
+    "answer": "面对技术难题时，他会系统性地分析问题，查阅文档和源码，通过调试和实验找到最优解决方案。"
+  },
+  {
+    "keywords": ["学习能力", "持续学习"],
+    "answer": "持续学习新技术，关注前端社区动态，通过博客和开源项目分享技术心得。"
+  },
+  {
+    "keywords": ["时间轴", "timeline"],
+    "answer": "时间轴上展示了他的工作经历、项目、旅行和日常生活，访问 /timeline 看看吧！"
+  },
+  {
+    "keywords": ["知识库", "knowledge"],
+    "answer": "知识库收录了他整理的技术文章和学习笔记，访问 /knowledge 可以搜索感兴趣的技术话题。"
+  }
+]

@@ -1,0 +1,143 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum EntryType {
+  work_experience
+  project
+  knowledge_link
+  travel
+  food
+  daily
+  other
+}
+
+enum EntryStatus {
+  draft
+  published
+  archived
+}
+
+enum ModuleName {
+  resume
+  timeline
+  projects
+  knowledge
+  blog
+  travel
+  lifestyle
+  games
+}
+
+model Entry {
+  id          String      @id @default(cuid())
+  userId      String      @default("default-user")
+  type        EntryType
+  status      EntryStatus @default(published)
+  title       String
+  slug        String      @unique
+  summary     String?
+  contentType String      @default("markdown")
+  occurredAt  DateTime?
+  location    String?
+  aiAnalysis  String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  parentId String?
+  parent   Entry?  @relation("EntryParent", fields: [parentId], references: [id], onDelete: Cascade)
+  children Entry[] @relation("EntryParent")
+
+  textContent TextContent?
+  modules     EntryModule[]
+  workExp     WorkExperience?
+  project     Project?
+  knowledge   KnowledgeLink?
+  travel      Travel?
+  lifestyle   Lifestyle?
+}
+
+model TextContent {
+  id      String  @id @default(cuid())
+  entryId String  @unique
+  content String
+  excerpt String?
+
+  entry Entry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+}
+
+model EntryModule {
+  id         String     @id @default(cuid())
+  entryId    String
+  moduleName ModuleName
+
+  entry Entry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+
+  @@unique([entryId, moduleName])
+}
+
+model WorkExperience {
+  entryId   String    @id @default(cuid())
+  company   String
+  role      String
+  startDate DateTime
+  endDate   DateTime?
+  techStack String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  entry Entry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+}
+
+model Project {
+  entryId     String   @id @default(cuid())
+  name        String
+  description String
+  techStack   String
+  link        String?
+  highlights  String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  entry Entry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+}
+
+model KnowledgeLink {
+  entryId     String   @id @default(cuid())
+  url         String
+  category    String
+  tags        String
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  entry Entry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+}
+
+model Travel {
+  entryId     String    @id @default(cuid())
+  destination String
+  travelDate  DateTime?
+  tags        String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  entry Entry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+}
+
+model Lifestyle {
+  entryId   String    @id @default(cuid())
+  subType   String
+  tags      String
+  date      DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  entry Entry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+}

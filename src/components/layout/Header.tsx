@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X, GitBranch, ExternalLink, Sparkles, ChevronRight, Sun, Moon } from 'lucide-react';
+import { Menu, X, GitBranch, ExternalLink, Sparkles, ChevronRight, Sun, Moon, Settings } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTheme } from '@/lib/theme-provider';
@@ -13,12 +13,17 @@ const navItems = [
   { label: '项目', href: '/projects' },
   { label: '时间轴', href: '/timeline' },
   { label: '知识库', href: '/knowledge' },
-  { label: 'AI 分身', href: '/avatar' },
+];
+
+const adminNavItems = [
+  { label: '智能导入', href: '/import' },
+  { label: '管理后台', href: '/admin' },
 ];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const pathname = usePathname();
 
@@ -28,6 +33,21 @@ export function Header() {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const token = document.cookie.includes('auth_token');
+    const storedLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+
+    if (token) {
+      sessionStorage.setItem('isLoggedIn', 'true');
+      setIsLoggedIn(true);
+    } else if (storedLoggedIn) {
+      setIsLoggedIn(true);
+    } else {
+      sessionStorage.removeItem('isLoggedIn');
+      setIsLoggedIn(false);
+    }
   }, []);
 
   const isActive = (href: string) => {
@@ -67,6 +87,30 @@ export function Header() {
                 }`} />
               </Link>
             ))}
+
+            {isLoggedIn && (
+              <>
+                <div className="w-px h-6 bg-border mx-2" />
+                {adminNavItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 group flex items-center gap-2 ${
+                      isActive(item.href)
+                        ? 'text-primary bg-primary/10'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-secondary/50'
+                    }`}
+                  >
+                    {item.href === '/import' && <Sparkles className="w-4 h-4" />}
+                    {item.href === '/admin' && <Settings className="w-4 h-4" />}
+                    {item.label}
+                    <ChevronRight className={`absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 transition-opacity ${
+                      isActive(item.href) ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+                    }`} />
+                  </Link>
+                ))}
+              </>
+            )}
           </nav>
 
           <div className="flex items-center gap-3">
@@ -93,13 +137,6 @@ export function Header() {
             >
               <ExternalLink className="w-5 h-5" />
             </a>
-
-            <Button className="hidden sm:flex items-center gap-2 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-primary-foreground" asChild>
-              <Link href="/import">
-                <Sparkles className="w-4 h-4" />
-                智能导入
-              </Link>
-            </Button>
 
             <button
               className="md:hidden p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-all"
@@ -128,12 +165,28 @@ export function Header() {
                   <ChevronRight className="w-4 h-4" />
                 </Link>
               ))}
-              <Button className="mt-2 w-full flex items-center justify-center gap-2 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground" asChild>
-                <Link href="/import" onClick={() => setMobileMenuOpen(false)}>
-                  <Sparkles className="w-4 h-4" />
-                  智能导入
-                </Link>
-              </Button>
+              {isLoggedIn && (
+                <>
+                  <div className="border-t border-border my-2" />
+                  {adminNavItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`px-4 py-3 rounded-lg text-sm font-medium transition-all flex items-center justify-between ${
+                        isActive(item.href)
+                          ? 'text-primary bg-primary/10'
+                          : 'text-muted-foreground hover:text-foreground hover:bg-secondary/50'
+                      }`}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.href === '/import' && <Sparkles className="w-4 h-4 mr-2" />}
+                      {item.href === '/admin' && <Settings className="w-4 h-4 mr-2" />}
+                      {item.label}
+                      <ChevronRight className="w-4 h-4" />
+                    </Link>
+                  ))}
+                </>
+              )}
             </nav>
           </div>
         )}

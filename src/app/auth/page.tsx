@@ -25,6 +25,8 @@ export default function AuthPage() {
     const result = await response.json();
 
     if (result.success) {
+      document.cookie = `auth_token=${result.token}; path=/; max-age=${24 * 60 * 60}; SameSite=Lax`;
+      sessionStorage.setItem('isLoggedIn', 'true');
       window.location.href = '/import';
     } else {
       setError('密码错误，请重试');

@@ -1,38 +1,36 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Timeline, Briefcase, GraduationCap, Trophy, Code, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Timeline, Briefcase, Code, BookOpen, Plane, Utensils, Calendar, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
-interface TimelineItem {
-  id: string;
-  year: string;
-  title: string;
-  description: string;
-  type: string;
-}
-
 const typeConfig: Record<string, { icon: any; color: string; label: string; bgColor: string }> = {
-  work: { icon: Briefcase, color: 'text-primary', label: '工作', bgColor: 'bg-primary/10' },
-  education: { icon: GraduationCap, color: 'text-accent', label: '教育', bgColor: 'bg-accent/10' },
-  achievement: { icon: Trophy, color: 'text-yellow-500', label: '成就', bgColor: 'bg-yellow-500/10' },
-  project: { icon: Code, color: 'text-green-500', label: '项目', bgColor: 'bg-green-500/10' },
+  work_experience: { icon: Briefcase, color: 'text-primary', label: '💼 工作', bgColor: 'bg-primary/10' },
+  project: { icon: Code, color: 'text-accent', label: '🛠️ 项目', bgColor: 'bg-accent/10' },
+  knowledge_link: { icon: BookOpen, color: 'text-blue-500', label: '📚 知识', bgColor: 'bg-blue-500/10' },
+  travel: { icon: Plane, color: 'text-green-500', label: '✈️ 旅行', bgColor: 'bg-green-500/10' },
+  food: { icon: Utensils, color: 'text-orange-500', label: '🍜 美食', bgColor: 'bg-orange-500/10' },
+  daily: { icon: Calendar, color: 'text-purple-500', label: '📝 日常', bgColor: 'bg-purple-500/10' },
+  other: { icon: Calendar, color: 'text-muted-foreground', label: '其他', bgColor: 'bg-muted/50' },
 };
 
 export default function TimelinePage() {
-  const [items, setItems] = useState<TimelineItem[]>([]);
+  const [filterType, setFilterType] = useState('all');
+  const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadData() {
+      setLoading(true);
       try {
-        const res = await fetch('/api/timeline');
-        const data = await res.json();
+        const response = await fetch('/api/timeline');
+        const data = await response.json();
         setItems(data);
       } catch (error) {
-        console.error('Failed to load data:', error);
+        console.error('Failed to load timeline:', error);
       } finally {
         setLoading(false);
       }
@@ -40,11 +38,37 @@ export default function TimelinePage() {
     loadData();
   }, []);
 
+  const filteredItems = filterType === 'all' 
+    ? items 
+    : items.filter(item => item.type === filterType);
+
+  const sortedItems = [...filteredItems].sort((a, b) => {
+    const dateA = a.occurredAt ? new Date(a.occurredAt) : new Date(a.createdAt);
+    const dateB = b.occurredAt ? new Date(b.occurredAt) : new Date(b.createdAt);
+    return dateB.getTime() - dateA.getTime();
+  });
+
+  const formatDate = (dateStr?: string | Date | null) => {
+    if (!dateStr) return '';
+    const date = new Date(dateStr);
+    return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
+  };
+
+  const getYear = (dateStr?: string | Date | null) => {
+    if (!dateStr) return '';
+    return new Date(dateStr).getFullYear();
+  };
+
+  const typeCounts = items.reduce((acc, item) => {
+    acc[item.type] = (acc[item.type] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh] pt-20">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent animate-pulse" />
+          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent to-primary animate-pulse" />
           <span className="text-muted-foreground">加载中...</span>
         </div>
       </div>
@@ -57,44 +81,73 @@ export default function TimelinePage() {
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 mb-4">
               <Timeline className="w-6 h-6 text-primary" />
               <h1 className="text-3xl font-bold">成长时间轴</h1>
             </div>
-            <p className="text-muted-foreground">记录职业成长历程和重要时刻</p>
+            <p className="text-muted-foreground">记录职业成长历程和生活点滴</p>
           </div>
 
-          {items.length > 0 ? (
-            <div className="space-y-6">
-              {items.map((item) => {
-                const config = typeConfig[item.type] || typeConfig.work;
-                const Icon = config.icon;
+          <div className="flex flex-wrap justify-center gap-2 mb-8">
+            <Button
+              variant={filterType === 'all' ? 'default' : 'outline'}
+              onClick={() => setFilterType('all')}
+              className={filterType === 'all' ? 'bg-primary hover:bg-primary/90' : 'bg-secondary/30 border-secondary'}
+              size="sm"
+            >
+              全部 ({items.length})
+            </Button>
+            {Object.entries(typeConfig).map(([key, config]) => (
+              <Button
+                key={key}
+                variant={filterType === key ? 'default' : 'outline'}
+                onClick={() => setFilterType(key)}
+                className={filterType === key ? `${config.bgColor.replace('/10', '')} hover:opacity-90` : 'bg-secondary/30 border-secondary'}
+                size="sm"
+              >
+                {config.label} ({typeCounts[key] || 0})
+              </Button>
+            ))}
+          </div>
 
-                return (
-                  <Card key={item.id} className="glass card-hover overflow-hidden border-primary/10">
-                    <CardContent className="p-6">
-                      <div className="flex gap-4 md:gap-8">
-                        <div className="hidden md:flex flex-col items-center">
-                          <div className={`w-10 h-10 rounded-full ${config.bgColor} flex items-center justify-center`}>
-                            <Icon className={`w-5 h-5 ${config.color}`} />
+          {sortedItems.length > 0 ? (
+            <div className="relative">
+              <div className="absolute left-[19px] top-0 bottom-0 w-0.5 bg-border hidden md:block" />
+              
+              <div className="space-y-6">
+                {sortedItems.map((item) => {
+                  const config = typeConfig[item.type] || typeConfig.other;
+                  const Icon = config.icon;
+
+                  return (
+                    <Card key={item.id} className="glass card-hover overflow-hidden border-primary/10">
+                      <CardContent className="p-6">
+                        <div className="flex gap-4">
+                          <div className="flex flex-col items-center">
+                            <div className={`w-10 h-10 rounded-full ${config.bgColor} flex items-center justify-center shadow-lg`}>
+                              <Icon className={`w-5 h-5 ${config.color}`} />
+                            </div>
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex flex-wrap items-center gap-3 mb-2">
+                              <span className="text-lg font-bold text-primary">{getYear(item.occurredAt || item.createdAt)}</span>
+                              <Badge className={`${config.bgColor} ${config.color} border-0`}>
+                                {config.label}
+                              </Badge>
+                              <span className="text-xs text-muted-foreground">
+                                {formatDate(item.occurredAt || item.createdAt)}
+                              </span>
+                            </div>
+                            <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
+                            <p className="text-muted-foreground text-sm">{item.summary || '暂无描述'}</p>
                           </div>
                         </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
-                            <span className="text-xl font-bold text-primary">{item.year}</span>
-                            <Badge className={`${config.bgColor} ${config.color} border-0`}>
-                              {config.label}
-                            </Badge>
-                          </div>
-                          <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
-                          <p className="text-muted-foreground text-sm">{item.description}</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                );
-              })}
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
             </div>
           ) : (
             <Card className="glass text-center p-12">

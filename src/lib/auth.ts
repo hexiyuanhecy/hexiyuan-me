@@ -1,20 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
+import jwt from 'jsonwebtoken';
 
 const SECRET_PASSWORD = process.env.IMPORT_PASSWORD || 'admin123';
-const JWT_SECRET = process.env.JWT_SECRET || 'secret-key';
+const JWT_SECRET = process.env.JWT_SECRET || 'hexiyuan-secret-key';
 
 export function generateToken(): string {
-  const payload = {
-    exp: Math.floor(Date.now() / 1000) + 24 * 60 * 60,
-    iat: Math.floor(Date.now() / 1000),
-  };
-  return Buffer.from(JSON.stringify(payload)).toString('base64');
+  return jwt.sign({ role: 'admin' }, JWT_SECRET, { expiresIn: '24h' });
 }
 
 export function verifyToken(token: string): boolean {
   try {
-    const payload = JSON.parse(Buffer.from(token, 'base64').toString());
-    return payload.exp > Math.floor(Date.now() / 1000);
+    jwt.verify(token, JWT_SECRET);
+    return true;
   } catch {
     return false;
   }

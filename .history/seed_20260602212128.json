@@ -1,0 +1,327 @@
+[
+    {
+      "type": "work_experience",
+      "title": "自由前端开发者",
+      "eventDate": "2025-05-01",
+      "modules": ["resume", "timeline"],
+      "fields": {
+        "company": "自由职业",
+        "role": "前端开发工程师",
+        "start_date": "2025-05",
+        "end_date": "",
+        "description": "探索前端与 AI 场景的结合落地，独立完成 AI 视频合成工具的前端核心流程开发，使用 Next.js + TypeScript + Vercel AI SDK。",
+        "tech_stack": ["React", "Next.js", "TypeScript", "AI SDK"]
+      }
+    },
+    {
+      "type": "work_experience",
+      "title": "字节跳动-飞书",
+      "eventDate": "2022-04-01",
+      "modules": ["resume", "timeline"],
+      "fields": {
+        "company": "某头部协作平台",
+        "role": "高级前端开发工程师",
+        "start_date": "2022-04",
+        "end_date": "2025-05",
+        "description": "负责飞书假勤、汇报两大核心业务线前端开发，服务千万级用户与企业租户；担任 NPS 体验治理、JSError 稳定性治理专项 Owner，联动跨团队搭建业务闭环体系；参与系统重构、双版本融合、控件组升级等核心项目，负责团队前端工程化体系建设，保障业务稳定迭代与线上安全。",
+        "tech_stack": ["React", "TypeScript", "ProTable", "Taro", "Webpack", "Slardar", "小程序"]
+      }
+    },
+    {
+      "type": "work_experience",
+      "title": "滴滴出行-橙心优选",
+      "eventDate": "2021-04-01",
+      "modules": ["resume", "timeline"],
+      "fields": {
+        "company": "某出行与社区电商平台",
+        "role": "前端开发工程师",
+        "start_date": "2021-04",
+        "end_date": "2022-04",
+        "description": "担任订单领域 Owner，负责橙心优选多端（C端/A端小程序、PC采购商城）前端开发，聚焦业务落地、性能优化与跨团队协作，适配大厂高压交付场景，保障电商交易链路稳定。",
+        "tech_stack": ["微信小程序", "React", "BFF", "埋点"]
+      }
+    },
+    {
+      "type": "work_experience",
+      "title": "叙简科技",
+      "eventDate": "2019-07-01",
+      "modules": ["resume", "timeline"],
+      "fields": {
+        "company": "某应急科技公司",
+        "role": "前端开发工程师",
+        "start_date": "2019-07",
+        "end_date": "2021-04",
+        "description": "担任应急方向前端 Owner，负责 6+ 应急指挥系统多子项目定制化开发，主导自研 GIS 模块重构优化，解决历史技术痛点，沉淀通用技术方案，提升团队研发效率，助力项目顺利验收及团队斩获公司核心奖项。",
+        "tech_stack": ["React", "GIS", "PostMessage", "配置化"]
+      }
+    },
+    {
+      "type": "project",
+      "title": "飞书假勤业务系统开发与迭代",
+      "eventDate": "2023-01-01",
+      "modules": ["projects", "timeline", "resume"],
+      "fields": {
+        "name": "飞书假勤业务系统开发与迭代",
+        "description": "参与双系统融合，休假模块重构，ProTable 懒加载性能提升 70%；独立交付字节 12W+ 员工年度结算、Mobility 等 10+ 需求；请假/加班控件组多端重构，抽象 15 个公共校验，开发成本降 60%；参与汇报系统重构，iOS TTI 提升 43%，包体积降 1.1MB。",
+        "tech_stack": ["React", "ProTable", "TypeScript", "Taro", "小程序", "Web"],
+        "link": "",
+        "highlights": [
+          "双系统融合，休假模块差异梳理与重构",
+          "ProTable 懒加载，大数据渲染性能提升 70%",
+          "12W+ 员工年度假期结算零差错上线",
+          "请假/加班控件组小程序到 Web/H5 迁移，公共校验抽象",
+          "汇报重构，iOS TTI 提升 43%，包体积下降 1.1MB"
+        ]
+      }
+    },
+    {
+      "type": "project",
+      "title": "飞书业务专项治理与工程化建设",
+      "eventDate": "2023-06-01",
+      "modules": ["projects", "timeline", "resume"],
+      "fields": {
+        "name": "飞书业务专项治理与工程化建设",
+        "description": "NPS 满意度治理（87%→93%），搭建三级打标体系与反馈闭环；JSError 治理专项，错误量下降 80%；发布流程优化，搭建自动化流水线，新增灰度、包体积卡点。",
+        "tech_stack": ["Slardar", "FeelGood", "灰度发布", "CI/CD"],
+        "link": "",
+        "highlights": [
+          "NPS 满意度提升至 93%",
+          "JSError 下降 80%，方案被兄弟团队复用",
+          "自动化发布流水线，降低人工风险"
+        ]
+      }
+    },
+    {
+      "type": "project",
+      "title": "橙心优选订单领域全链路优化",
+      "eventDate": "2021-08-01",
+      "modules": ["projects", "timeline"],
+      "fields": {
+        "name": "橙心优选订单领域全链路优化",
+        "description": "C 端订单页 TTI 从 1909ms 降至 855ms，启动 CPU 消耗降 13.7%；BFF 楼层化重构，分包体积 1680kb → 860kb，人效提升 50%+；全链路埋点体系优化。",
+        "tech_stack": ["微信小程序", "React", "BFF", "性能优化"],
+        "link": "",
+        "highlights": [
+          "TTI 优化超 50%",
+          "BFF 重构人效提升 50%"
+        ]
+      }
+    },
+    {
+      "type": "project",
+      "title": "应急指挥系统与 GIS 模块重构",
+      "eventDate": "2020-01-01",
+      "modules": ["projects", "timeline"],
+      "fields": {
+        "name": "应急指挥系统定制化开发与 GIS 模块重构",
+        "description": "负责事件上报全流程开发，多角色审批、续报；主导 GIS 模块基于 React+PostMessage 重构，覆盖 6+ 项目，人效提升 50%；静态数据配置化方案减少发版频率。",
+        "tech_stack": ["React", "PostMessage", "GIS", "配置化"],
+        "link": "",
+        "highlights": [
+          "GIS 重构人效提升 50%",
+          "配置化方案减少发版频率"
+        ]
+      }
+    },
+    {
+      "type": "project",
+      "title": "飞书汇报 2.0 重构与品质优化",
+      "eventDate": "2022-08-01",
+      "modules": ["projects", "timeline"],
+      "fields": {
+        "name": "飞书汇报 2.0 重构与品质优化",
+        "description": "参与 PC 小程序重构为 Web，实现富文本自定义、OKR 插入、分享转发；搭建运营平台支持公共通告；性能优化：iOS TTI 提升 43%，包体积降 1.1MB，Web TTI <1s。",
+        "tech_stack": ["React", "Taro", "Webpack", "FeelGood", "性能优化"],
+        "link": "",
+        "highlights": [
+          "富文本扩展，支持划词评论、任务代办等",
+          "iOS TTI 提升 43%，包体积下降 1.1MB"
+        ]
+      }
+    },
+    {
+      "type": "project",
+      "title": "假勤审批控件组多端重构与迁移",
+      "eventDate": "2023-03-01",
+      "modules": ["projects", "timeline", "resume"],
+      "fields": {
+        "name": "假勤审批控件组多端重构与迁移",
+        "description": "梳理请假、加班控件组逻辑，完成从飞书审批原生小程序到 Web 的迁移，再到 BPM 及 H5 的统一；抽象 15 个公共校验逻辑，支持多端复用；负责灰度发布与版本管理，输出控件组接入规范。",
+        "tech_stack": ["小程序", "React", "NPM 包", "灰度", "校验"],
+        "link": "",
+        "highlights": [
+          "抽象 15 个公共校验，后续 H5 迁移直接复用",
+          "建立控件组发布与灰度机制",
+          "输出控件组接入规范，降低新人上手成本"
+        ]
+      }
+    },
+    {
+      "type": "project",
+      "title": "字节跳动 12W+ 员工年度假期结算",
+      "eventDate": "2024-06-01",
+      "modules": ["projects", "timeline", "resume"],
+      "fields": {
+        "name": "字节跳动 12W+ 员工年度假期结算",
+        "description": "独立完成结算一、二期需求，支持批量结算、手动纠偏、结算中提示及报表查询，按期零差错上线。",
+        "tech_stack": ["React", "后端配合"],
+        "link": "",
+        "highlights": [
+          "12W+ 员工数据零差错结算",
+          "结算结果于 2024-07-01 公布"
+        ]
+      }
+    },
+    {
+      "type": "project",
+      "title": "跨境派遣 Mobility 假勤管理",
+      "eventDate": "2024-08-01",
+      "modules": ["projects", "timeline"],
+      "fields": {
+        "name": "跨境派遣 Mobility 假勤管理",
+        "description": "支持全球化业务，完成外派员工假期类型、额度发放、员工端操作等功能，保障假勤福利规范性。",
+        "tech_stack": ["React", "国际化"],
+        "link": "",
+        "highlights": [
+          "支持全球化派遣场景",
+          "管理员假期类型与计划配置"
+        ]
+      }
+    },
+    {
+      "type": "project",
+      "title": "假勤前端发布流程优化专项",
+      "eventDate": "2024-01-01",
+      "modules": ["projects", "timeline", "resume"],
+      "fields": {
+        "name": "假勤前端发布流程优化（火车司机）",
+        "description": "维护迭代火车流水线，对齐 LBA 管控策略；新增灰度看板、包体积检测、自动化测试等卡点；将 BPM/审批控件组仓库接入，实现自动发布；规范发布节奏与提测流程。",
+        "tech_stack": ["CI/CD", "灰度", "自动化测试"],
+        "link": "",
+        "highlights": [
+          "流水线自动发布，降低人工风险",
+          "包体积卡点与影响分析",
+          "规范假勤发布节奏"
+        ]
+      }
+    },
+    {
+      "type": "project",
+      "title": "假勤 NPS 用户体验治理（Owner）",
+      "eventDate": "2023-06-01",
+      "modules": ["projects", "timeline", "resume"],
+      "fields": {
+        "name": "NPS 满意度治理专项",
+        "description": "作为 Owner 联动前端、产品、设计、服务端及 QA 团队，建立三级打标体系与周巡检机制；识别 10 个头部痛点，推动 5 个核心问题落地；建立用户触达机制（Bot 推送+CSM 触达），考勤配置转化率 60%；最终满意度从 87% 提升至 93%，治理体系成为团队标准流程。",
+        "tech_stack": ["FeelGood", "数据分析", "跨团队协作"],
+        "link": "",
+        "highlights": [
+          "满意度提升 6 个百分点",
+          "三级打标体系与周巡检机制",
+          "触达机制，考勤配置转化率 60%",
+          "治理体系成为团队标准流程"
+        ]
+      }
+    },
+    {
+      "type": "project",
+      "title": "假勤 JSError 稳定性治理（Owner）",
+      "eventDate": "2024-01-01",
+      "modules": ["projects", "timeline", "resume"],
+      "fields": {
+        "name": "JSError 稳定性治理专项",
+        "description": "制定团队治理规范与周巡检机制，搭建监控看板与报警体系；推动假勤各项目（打卡、考勤、休假员工端、管理端）治理落地，整体错误量下降 80%；方案被兄弟团队复用学习，产出巡检规范与最佳实践。",
+        "tech_stack": ["Slardar", "前端监控", "JS Error"],
+        "link": "",
+        "highlights": [
+          "错误量下降 80%",
+          "建立巡检机制与报警体系",
+          "方案被兄弟团队复用"
+        ]
+      }
+    },
+    {
+      "type": "project",
+      "title": "UD 通用组件库 H5 List 组件开发",
+      "eventDate": "2023-01-01",
+      "modules": ["projects", "timeline"],
+      "fields": {
+        "name": "UD 通用组件库 H5 List 组件",
+        "description": "参与 UD 通用组件库 H5 端开发，完成并上线 List 组件，供各业务方使用。",
+        "tech_stack": ["React", "H5", "组件库"],
+        "link": "",
+        "highlights": [
+          "组件上线供多业务方使用"
+        ]
+      }
+    },
+    {
+      "type": "project",
+      "title": "假勤效能专项（导入导出/自定义列封装）",
+      "eventDate": "2024-01-01",
+      "modules": ["projects", "timeline"],
+      "fields": {
+        "name": "假勤效能专项",
+        "description": "参与假勤效能专项，负责导入导出组件封装与维护；梳理假勤导入导出使用情况；封装自定义列组件。",
+        "tech_stack": ["React", "组件封装"],
+        "link": "",
+        "highlights": [
+          "导入导出组件封装",
+          "自定义列组件维护"
+        ]
+      }
+    },
+    {
+      "type": "project",
+      "title": "休假员工端性能优化（TTI 优化）",
+      "eventDate": "2024-01-01",
+      "modules": ["projects", "timeline"],
+      "fields": {
+        "name": "休假员工端性能优化",
+        "description": "休假第一轮优化落地，PC员工端首页 TTI PT75 由 4.4s 下降到 2.6s；2 秒开率由 3% 提升至 43.1%。",
+        "tech_stack": ["性能优化"],
+        "link": "",
+        "highlights": [
+          "TTI 下降 41%",
+          "2 秒开率大幅提升"
+        ]
+      }
+    },
+    {
+      "type": "project",
+      "title": "Argus 风险专项修复",
+      "eventDate": "2024-01-01",
+      "modules": ["projects", "timeline"],
+      "fields": {
+        "name": "Argus 风险专项",
+        "description": "完成 Argus 风险专项-休假员工端阻塞问题修复，降低业务风险并减少业务编译卡点；完成假勤各项目 XSS 域名攻击问题修复。",
+        "tech_stack": ["安全", "XSS"],
+        "link": "",
+        "highlights": [
+          "消除阻塞问题与 XSS 风险"
+        ]
+      }
+    },
+    {
+      "type": "knowledge_link",
+      "title": "前端复习知识库",
+      "modules": ["knowledge"],
+      "fields": {
+        "url": "https://my.feishu.cn/wiki/V1SNwDiDfi5oGek8kCOcRIientb",
+        "category": "前端",
+        "tags": ["面试", "知识库"],
+        "description": "个人前端面试复习知识库，包含 JS、React、工程化等内容"
+      }
+    },
+    {
+      "type": "knowledge_link",
+      "title": "假勤统一打印方案设计文档",
+      "modules": ["knowledge"],
+      "fields": {
+        "url": "https://bytedance.larkoffice.com/docx/NArYdyFFSoQCOHxYYfccGKcbn0f",
+        "category": "工程化",
+        "tags": ["打印", "控件组"],
+        "description": "假勤打印控件组方案设计，通用打印模板减少 80% 人力投入"
+      }
+    }
+  ]

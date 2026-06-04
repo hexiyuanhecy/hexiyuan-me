@@ -1,27 +1,24 @@
 import { NextResponse } from 'next/server';
-import { loadData, saveData } from '@/lib/store';
+import { PrismaClient } from '@/generated/prisma';
+
+const prisma = new PrismaClient();
 
 export async function GET() {
   try {
-    const data = loadData();
-    return NextResponse.json(data.projects);
+    const entries = await prisma.entry.findMany({
+      where: {
+        type: 'project',
+        status: 'published',
+      },
+      include: {
+        project: true,
+        textContent: true,
+      },
+      orderBy: { occurredAt: 'desc' },
+    });
+    
+    return NextResponse.json(entries);
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to get projects' }, { status: 500 });
-  }
-}
-
-export async function POST(request: Request) {
-  try {
-    const projectData = await request.json();
-    const data = loadData();
-    const newProject = {
-      id: Date.now().toString(),
-      ...projectData,
-    };
-    data.projects.push(newProject);
-    saveData(data);
-    return NextResponse.json(newProject);
-  } catch (error) {
-    return NextResponse.json({ error: 'Failed to create project' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to fetch projects' }, { status: 500 });
   }
 }

@@ -1,27 +1,23 @@
 import { NextResponse } from 'next/server';
-import { loadData, saveData } from '@/lib/store';
+import { PrismaClient } from '@/generated/prisma';
+
+const prisma = new PrismaClient();
 
 export async function GET() {
   try {
-    const data = loadData();
-    return NextResponse.json(data.knowledge);
+    const entries = await prisma.entry.findMany({
+      where: {
+        type: 'knowledge_link',
+        status: 'published',
+      },
+      include: {
+        knowledge: true,
+      },
+      orderBy: { createdAt: 'desc' },
+    });
+    
+    return NextResponse.json(entries);
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to get knowledge' }, { status: 500 });
-  }
-}
-
-export async function POST(request: Request) {
-  try {
-    const articleData = await request.json();
-    const data = loadData();
-    const newArticle = {
-      id: Date.now().toString(),
-      ...articleData,
-    };
-    data.knowledge.push(newArticle);
-    saveData(data);
-    return NextResponse.json(newArticle);
-  } catch (error) {
-    return NextResponse.json({ error: 'Failed to create article' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to fetch knowledge' }, { status: 500 });
   }
 }

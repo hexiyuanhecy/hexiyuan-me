@@ -1,23 +1,21 @@
 import { NextResponse } from 'next/server';
-import { loadData, saveData, store } from '@/lib/store';
 
 export async function GET() {
   try {
-    const data = loadData();
-    return NextResponse.json(data.profile);
+    const profile = {
+      name: '何西元',
+      title: '高级前端工程师',
+      bio: '专注于 React/Next.js 技术栈，热爱探索新技术，追求优雅的代码和卓越的用户体验。',
+      avatar: null,
+      skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Node.js', '微前端'],
+      socialLinks: {
+        github: 'https://github.com/hexiyuan',
+        linkedin: 'https://linkedin.com/in/hexiyuan',
+      },
+    };
+    
+    return NextResponse.json(profile);
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to get profile' }, { status: 500 });
-  }
-}
-
-export async function PUT(request: Request) {
-  try {
-    const updates = await request.json();
-    const data = loadData();
-    data.profile = { ...data.profile, ...updates };
-    saveData(data);
-    return NextResponse.json(data.profile);
-  } catch (error) {
-    return NextResponse.json({ error: 'Failed to update profile' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to fetch profile' }, { status: 500 });
   }
 }

@@ -1,50 +1,66 @@
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "sqlite"
+  url      = env("DATABASE_URL")
 }
 
-model User {
-  id        String   @id @default(cuid())
-  name      String
-  bio       String?
-  avatar    String?
-  skills    String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+enum EntryType {
+  work_experience
+  project
+  knowledge_link
+  travel
+  food
+  daily
+  other
+}
 
-  entries Entry[]
+enum EntryStatus {
+  draft
+  published
+  archived
+}
+
+enum ModuleName {
+  resume
+  timeline
+  projects
+  knowledge
+  blog
+  travel
+  lifestyle
+  games
 }
 
 model Entry {
   id            String          @id @default(cuid())
-  userId        String
+  userId        String          @default("default-user")
   type          EntryType
-  status        EntryStatus
+  status        EntryStatus     @default(published)
   title         String
   slug          String          @unique
   summary       String?
-  contentType   ContentType
-  textContent   TextContent?
+  contentType   String          @default("markdown")
   occurredAt    DateTime?
   location      String?
   aiAnalysis    String?
-  aiVector      String?
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
 
-  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  parentId      String?
+  parent        Entry?          @relation("EntryParent", fields: [parentId], references: [id], onDelete: Cascade)
+  children      Entry[]         @relation("EntryParent")
+
+  textContent   TextContent?
   modules       EntryModule[]
   workExp       WorkExperience?
   project       Project?
-  knowledge     Knowledge?
+  knowledge     KnowledgeLink?
   travel        Travel?
-  food          Food?
-  daily         Daily?
-  tags          EntryTag[]
+  lifestyle     Lifestyle?
 }
 
 model TextContent {
@@ -57,26 +73,26 @@ model TextContent {
 }
 
 model EntryModule {
-  id          String      @id @default(cuid())
-  entryId     String
-  moduleName  ModuleName
+  id         String     @id @default(cuid())
+  entryId    String
+  moduleName ModuleName
 
-  entry       Entry       @relation(fields: [entryId], references: [id], onDelete: Cascade)
+  entry      Entry      @relation(fields: [entryId], references: [id], onDelete: Cascade)
 
   @@unique([entryId, moduleName])
 }
 
 model WorkExperience {
-  entryId     String   @id @default(cuid())
-  company     String
-  role        String
-  startDate   DateTime
-  endDate     DateTime?
-  techStack   String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  entryId   String   @id @default(cuid())
+  company   String
+  role      String
+  startDate DateTime
+  endDate   DateTime?
+  techStack String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  entry       Entry    @relation(fields: [entryId], references: [id], onDelete: Cascade)
+  entry     Entry    @relation(fields: [entryId], references: [id], onDelete: Cascade)
 }
 
 model Project {
@@ -92,120 +108,36 @@ model Project {
   entry       Entry    @relation(fields: [entryId], references: [id], onDelete: Cascade)
 }
 
-model Knowledge {
+model KnowledgeLink {
   entryId     String   @id @default(cuid())
-  categoryId  String?
+  url         String
+  category    String
   tags        String
+  description String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   entry       Entry    @relation(fields: [entryId], references: [id], onDelete: Cascade)
-  category    Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
 }
 
 model Travel {
+  entryId      String   @id @default(cuid())
+  destination  String
+  travelDate   DateTime?
+  tags         String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  entry        Entry    @relation(fields: [entryId], references: [id], onDelete: Cascade)
+}
+
+model Lifestyle {
   entryId     String   @id @default(cuid())
-  destination String
-  travelDate  DateTime?
+  subType     String
   tags        String
+  date        DateTime?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   entry       Entry    @relation(fields: [entryId], references: [id], onDelete: Cascade)
-}
-
-model Food {
-  entryId     String   @id @default(cuid())
-  categoryId  String?
-  tags        String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  entry       Entry    @relation(fields: [entryId], references: [id], onDelete: Cascade)
-  category    Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
-}
-
-model Daily {
-  entryId     String   @id @default(cuid())
-  categoryId  String?
-  tags        String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  entry       Entry    @relation(fields: [entryId], references: [id], onDelete: Cascade)
-  category    Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
-}
-
-model Category {
-  id          String     @id @default(cuid())
-  name        String
-  slug        String     @unique
-  parentId    String?
-  sortOrder   Int        @default(0)
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-
-  parent      Category?  @relation("CategoryParent", fields: [parentId], references: [id], onDelete: SetNull)
-  children    Category[] @relation("CategoryParent")
-  knowledge   Knowledge[]
-  food        Food[]
-  daily       Daily[]
-}
-
-model Tag {
-  id        String      @id @default(cuid())
-  name      String      @unique
-  slug      String      @unique
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
-
-  entries   EntryTag[]
-}
-
-model EntryTag {
-  id        String   @id @default(cuid())
-  entryId   String
-  tagId     String
-
-  entry     Entry    @relation(fields: [entryId], references: [id], onDelete: Cascade)
-  tag       Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
-
-  @@unique([entryId, tagId])
-}
-
-enum EntryType {
-  work_experience
-  project
-  knowledge
-  blog
-  travel
-  food
-  daily
-  other
-}
-
-enum EntryStatus {
-  draft
-  published
-  archived
-}
-
-enum ContentType {
-  markdown
-  rich_text
-  image
-  video
-  audio
-  file
-}
-
-enum ModuleName {
-  resume
-  timeline
-  projects
-  knowledge
-  blog
-  travel
-  lifestyle
-  games
 }

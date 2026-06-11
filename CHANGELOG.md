@@ -44,7 +44,7 @@ All notable changes to this project will be documented in this file.
   - 支持系统主题自动检测
   - localStorage 持久化
 
-- ✅ **AI 数字分身**（右下角悬浮机器人）
+- ✅ **AI 助手**（右下角悬浮机器人）
   - 全站固定悬浮按钮
   - 聊天窗口支持常见问题问答
   - 打字机效果模拟

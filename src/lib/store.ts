@@ -63,18 +63,18 @@ interface DataStore {
 const defaultData: DataStore = {
   profile: {
     id: '1',
-    name: '何西元',
+    name: '西瓜',
     title: '高级前端工程师',
     bio: '专注于 Web 前端开发，热爱技术创新与知识分享',
     location: '杭州',
     email: 'contact@hexiyuan.me',
     githubUrl: 'https://github.com/hexiyuanhecy',
-    experiences: [],
+    experiences: []
   },
   projects: [],
   timeline: [],
-  knowledge: [],
-};
+  knowledge: []
+}
 
 function loadData(): DataStore {
   if (existsSync(DATA_PATH)) {

@@ -15,8 +15,8 @@ interface Message {
 }
 
 const mockResponses = [
-  '您好！我是何西元的数字分身。很高兴能与您交流！',
-  '何西元是一位资深的前端工程师，拥有多年的开发经验。',
+  '您好！我是西瓜的助手。很高兴能与您交流！',
+  '西瓜是一位资深的前端工程师，拥有多年的开发经验。',
   '他擅长 React、Next.js、TypeScript 等现代前端技术栈。',
   '如果您想了解更多关于他的项目或经历，可以访问他的个人主页。',
   '感谢您的提问！如果您有其他问题，请随时告诉我。',
@@ -31,7 +31,7 @@ export default function AvatarPage() {
   useEffect(() => {
     const welcomeMessage: Message = {
       id: '1',
-      content: '您好！我是何西元的数字分身。有什么我可以帮您了解的吗？',
+      content: '您好！我是西瓜的助手。有什么我可以帮您了解的吗？',
       role: 'assistant',
       timestamp: new Date(),
     };
@@ -85,9 +85,9 @@ export default function AvatarPage() {
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 mb-4">
               <MessageCircle className="w-6 h-6 text-primary" />
-              <h1 className="text-3xl font-bold">AI 数字分身</h1>
+              <h1 className="text-3xl font-bold">AI 助手</h1>
             </div>
-            <p className="text-muted-foreground">与何西元的 AI 分身对话</p>
+            <p className="text-muted-foreground">与西瓜的 AI 分身对话</p>
           </div>
 
           <Card className="glass flex-1 flex flex-col h-[500px] border-primary/10">

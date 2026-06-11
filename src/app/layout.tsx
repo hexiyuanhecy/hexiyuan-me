@@ -7,7 +7,7 @@ import { FloatingChat } from "@/components/chat/FloatingChat";
 
 export const metadata: Metadata = {
   title: "Hexiyuan's Digital Garden",
-  description: "何西元的数字花园 - 技术博客与个人作品集",
+  description: "西瓜的个人网站 - 技术博客与个人作品集",
 };
 
 export default function RootLayout({

@@ -112,7 +112,7 @@ export function FloatingChat() {
 
   useEffect(() => {
     if (isOpen && pathname && CONTEXT_MESSAGES[pathname]) {
-      const hasContextMessage = messages.some(m => 
+      const hasContextMessage = messages.some(m =>
         m.content === CONTEXT_MESSAGES[pathname]
       );
       if (!hasContextMessage && messages.length > 0) {
@@ -133,7 +133,7 @@ export function FloatingChat() {
     messageTimestampsRef.current = messageTimestampsRef.current.filter(
       ts => now - ts < 60000
     );
-    
+
     if (messageTimestampsRef.current.length >= MAX_MESSAGES_PER_MINUTE) {
       setIsRateLimited(true);
       setTimeout(() => setIsRateLimited(false), 60000);
@@ -151,15 +151,15 @@ export function FloatingChat() {
   const typeMessage = useCallback(async (messageId: string, fullContent: string) => {
     const typingSpeed = 30;
     for (let i = 1; i <= fullContent.length; i++) {
-      setMessages(prev => prev.map(msg => 
-        msg.id === messageId 
+      setMessages(prev => prev.map(msg =>
+        msg.id === messageId
           ? { ...msg, content: fullContent.slice(0, i) }
           : msg
       ));
       await new Promise(resolve => setTimeout(resolve, typingSpeed));
     }
-    setMessages(prev => prev.map(msg => 
-      msg.id === messageId 
+    setMessages(prev => prev.map(msg =>
+      msg.id === messageId
         ? { ...msg, isTyping: false }
         : msg
     ));
@@ -183,7 +183,7 @@ export function FloatingChat() {
 
     let response = '';
     const lowerInput = input.toLowerCase();
-    
+
     for (const faq of FAQ_RESPONSES) {
       for (const keyword of faq.keywords) {
         if (lowerInput.includes(keyword.toLowerCase())) {
@@ -197,11 +197,11 @@ export function FloatingChat() {
     if (!response) {
       const personalKeywords = ['经历', '项目', '工作', '技术', '学习', '能力', '简历', '作品'];
       const isPersonalQuestion = personalKeywords.some(k => lowerInput.includes(k));
-      
+
       if (isPersonalQuestion) {
         response = `这个问题我需要想想... 你可以直接浏览网站了解更多：\n- [💼 简历时间轴](/resume)\n- [🛠️ 项目作品集](/projects)\n- [📚 知识库](/knowledge)\n- [📖 成长时间轴](/timeline)`;
       } else {
-        response = '哎呀，这个问题超出我的认知范围了，我只知道何西元的事～要不聊聊他的项目？';
+        response = '哎呀，这个问题超出我的认知范围了，我只知道西瓜的事～要不聊聊他的项目？';
       }
     }
 
@@ -307,7 +307,7 @@ export function FloatingChat() {
                             }`}>
                               <div className="whitespace-pre-wrap text-left">
                                 {message.role === 'assistant' ? (
-                                  <Markdown 
+                                  <Markdown
                                     components={{
                                       a: ({ href, children }) => (
                                         <button
@@ -334,7 +334,7 @@ export function FloatingChat() {
                                   <p>{message.content}</p>
                                 )}
                               </div>
-                              
+
                               {message.content === WELCOME_MESSAGE && (
                                 <div className="flex flex-wrap gap-2 mt-3">
                                   <button
@@ -392,9 +392,9 @@ export function FloatingChat() {
                         className="flex-1 h-9 text-sm"
                         disabled={isLoading || isRateLimited}
                       />
-                      <Button 
-                        onClick={handleSend} 
-                        disabled={isLoading || isRateLimited} 
+                      <Button
+                        onClick={handleSend}
+                        disabled={isLoading || isRateLimited}
                         className="bg-primary hover:bg-primary/90 h-9 px-3"
                       >
                         <Send className="w-4 h-4" />

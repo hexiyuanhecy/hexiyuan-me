@@ -17,15 +17,15 @@
   },
   {
     "keywords": ["你好", "hi", "hello"],
-    "answer": "你好！我是何西元的 AI 数字分身，很高兴认识你！"
+    "answer": "你好！我是西瓜的 AI 助手，很高兴认识你！"
   },
   {
     "keywords": ["你是谁", "身份"],
-    "answer": "我是何西元的 AI 数字分身，一个前端工程师的智能助手。"
+    "answer": "我是西瓜的 AI 助手，一个前端工程师的智能助手。"
   },
   {
     "keywords": ["学历", "教育", "毕业"],
-    "answer": "何西元毕业于计算机相关专业，2019年进入互联网行业。"
+    "answer": "西瓜毕业于计算机相关专业，2019年进入互联网行业。"
   },
   {
     "keywords": ["爱好", "兴趣"],
@@ -37,7 +37,7 @@
   },
   {
     "keywords": ["react hooks", "hooks"],
-    "answer": "何西元熟练使用 React Hooks，包括 useState、useEffect、useContext、useReducer 等。他擅长自定义 hooks 来复用状态逻辑。"
+    "answer": "西瓜熟练使用 React Hooks，包括 useState、useEffect、useContext、useReducer 等。他擅长自定义 hooks 来复用状态逻辑。"
   },
   {
     "keywords": ["nextjs", "next"],

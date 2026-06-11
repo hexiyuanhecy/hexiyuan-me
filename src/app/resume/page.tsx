@@ -171,7 +171,7 @@ export default function ResumePage() {
                   </div>
                 </div>
                 <div className="flex-1 text-center md:text-left">
-                  <h2 className="text-2xl font-bold mb-1">何西元</h2>
+                  <h2 className="text-2xl font-bold mb-1">西瓜</h2>
                   <p className="text-primary font-medium mb-2">高级前端工程师</p>
                   <p className="text-muted-foreground text-sm mb-4">专注于 Web 前端开发，热爱技术创新与知识分享</p>
                   <div className="flex flex-wrap justify-center md:justify-start gap-4 text-sm text-muted-foreground">

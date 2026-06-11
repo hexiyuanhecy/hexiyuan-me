@@ -2,12 +2,12 @@ import { prisma } from './db'
 
 export async function getProfile() {
   return {
-    name: '何西元',
+    name: '西瓜',
     title: '高级前端工程师',
     bio: '专注于 Web 前端开发，热爱技术创新与知识分享',
     location: '杭州',
     email: 'contact@hexiyuan.me',
-    githubUrl: 'https://github.com/hexiyuan',
+    githubUrl: 'https://github.com/hexiyuan'
   }
 }
 

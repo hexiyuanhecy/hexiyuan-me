@@ -122,7 +122,7 @@ export default function ImportPage() {
 
       if (!res.ok) throw new Error('分析失败');
       const data = await res.json();
-      
+
       const items: AnalyzedItem[] = (data.items || []).map((item: any) => ({
         id: item.id || Math.random().toString(36).substr(2, 9),
         type: item.type || 'other',
@@ -149,7 +149,7 @@ export default function ImportPage() {
 
   const handleConfirm = async () => {
     const confirmedItems = analyzedItems.filter(item => item.confirmed);
-    
+
     if (confirmedItems.length === 0) {
       setError('请至少选择一项内容导入');
       return;
@@ -184,7 +184,7 @@ export default function ImportPage() {
   const toggleModule = (itemId: string, moduleName: string) => {
     setAnalyzedItems(items => items.map(item => {
       if (item.id !== itemId) return item;
-      
+
       const isWorkExp = item.type === 'work_experience';
       if (isWorkExp && moduleName === 'resume') {
         return item;
@@ -334,7 +334,7 @@ export default function ImportPage() {
   return (
     <div className="min-h-screen pt-20 pb-12">
       <div className="absolute top-1/4 -right-32 w-96 h-96 bg-primary/10 rounded-full blur-[100px]" />
-      
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
@@ -357,6 +357,8 @@ export default function ImportPage() {
                     {mode === 'quick' ? '快速录入单条内容' : '深度整理模式：自动去重、拆分、排版'}
                   </CardDescription>
                 </div>
+              </CardHeader>
+              <CardContent>
                 <div className="flex flex-wrap items-center gap-3">
                   <div className="flex flex-wrap gap-2">
                     <Button
@@ -389,8 +391,8 @@ export default function ImportPage() {
                         disabled={loading}
                         className={cn(
                           'text-sm',
-                          aiService === service.value 
-                            ? 'bg-primary hover:bg-primary/90' 
+                          aiService === service.value
+                            ? 'bg-primary hover:bg-primary/90'
                             : 'bg-secondary/30 border-secondary'
                         )}
                       >
@@ -398,35 +400,15 @@ export default function ImportPage() {
                       </Button>
                     ))}
                   </div>
-                  <div className="h-6 w-px bg-border hidden sm:block" />
-                  <Button 
-                    onClick={handleAnalyze} 
-                    disabled={loading || !content.trim()} 
-                    className="gap-2 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-primary-foreground"
-                  >
-                    {loading ? (
-                      <>
-                        <Sparkles className="w-4 h-4 animate-spin" />
-                        分析中...
-                      </>
-                    ) : (
-                      <>
-                        <Sparkles className="w-4 h-4" />
-                        {mode === 'quick' ? '智能分析' : '深度整理'}
-                      </>
-                    )}
-                  </Button>
                 </div>
-              </CardHeader>
-              <CardContent>
-                <div className="mb-4">
+                {/* <div className="mb-4">
                   <p className="text-xs text-muted-foreground">
                     {AI_SERVICES.find(s => s.value === aiService)?.description}
                   </p>
-                </div>
+                </div> */}
 
-                <div className="mb-4">
-                  <p className="text-sm text-muted-foreground mb-2">模板参考（点击使用）：</p>
+                <div className="mb-4 mt-4 flex items-center gap-2">
+                  <div className="text-sm text-muted-foreground mb-2">模板参考（点击使用）：</div>
                   <div className="flex flex-wrap gap-2">
                     {Object.entries(TEMPLATES).map(([type, _]) => (
                       <Button
@@ -447,18 +429,38 @@ export default function ImportPage() {
                 </div>
 
                 <Textarea
-                  placeholder={mode === 'quick' 
+                  placeholder={mode === 'quick'
                     ? '例如：2022年加入某科技公司，担任高级前端工程师，负责电商平台前端架构设计，使用 React、Next.js、TypeScript...'
                     : '粘贴大段文本（如完整简历、多项目复盘、旅行游记合集等），系统会自动去重、拆分和排版...'
                   }
-                  className="min-h-[200px] mb-4 bg-secondary/30 border-secondary"
+                  className="min-h-[200px] max-h-[400px] overflow-y-auto mb-4 bg-secondary/30 border-secondary"
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                   disabled={loading}
                   readOnly={loading}
                 />
-                
+
                 {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+
+                <div className="flex justify-end">
+                  <Button
+                    onClick={handleAnalyze}
+                    disabled={loading || !content.trim()}
+                    className="gap-2 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary text-primary-foreground"
+                  >
+                    {loading ? (
+                      <>
+                        <Sparkles className="w-4 h-4 animate-spin" />
+                        分析中...
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="w-4 h-4" />
+                        {mode === 'quick' ? '智能分析' : '深度整理'}
+                      </>
+                    )}
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           ) : (
@@ -505,7 +507,7 @@ export default function ImportPage() {
                         <div className="flex-shrink-0">
                           <div className={cn('w-3 h-3 rounded-full', TYPE_COLORS[item.type])} />
                         </div>
-                        
+
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-2">
                             <Badge variant="outline" className="text-xs">
@@ -541,7 +543,7 @@ export default function ImportPage() {
                                 className="min-h-[60px] text-sm bg-secondary/30"
                                 placeholder="摘要"
                               />
-                              
+
                               {item.techStack.length > 0 && (
                                 <div className="flex flex-wrap gap-1">
                                   {item.techStack.map((tech, idx) => (
@@ -585,7 +587,7 @@ export default function ImportPage() {
                                 const isWorkExp = item.type === 'work_experience';
                                 const isSelected = item.selectedModules.includes(module.name);
                                 const isDisabled = isWorkExp && module.name === 'resume';
-                                
+
                                 return (
                                   <button
                                     key={module.name}
@@ -628,8 +630,8 @@ export default function ImportPage() {
                             onClick={() => updateItemField(item.id, 'confirmed', !item.confirmed)}
                             className={cn(
                               'p-2 rounded-lg transition-colors',
-                              item.confirmed 
-                                ? 'bg-primary/10 text-primary' 
+                              item.confirmed
+                                ? 'bg-primary/10 text-primary'
                                 : 'bg-secondary/30 text-muted-foreground'
                             )}
                             title={item.confirmed ? '取消选中' : '选中'}

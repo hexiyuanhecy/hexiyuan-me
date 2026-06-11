@@ -10,7 +10,7 @@ export function Footer() {
             <span>Hexiyuan's Digital Garden</span>
           </div>
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} 何西元. All rights reserved.
+            © {new Date().getFullYear()} 西瓜. All rights reserved.
           </p>
         </div>
         <Separator className="my-6" />

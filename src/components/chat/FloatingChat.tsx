@@ -9,6 +9,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { usePathname, useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import Markdown from 'react-markdown';
+import faqConfig from '@/data/faq.json';
 
 interface Message {
   id: string;
@@ -23,36 +24,14 @@ interface FAQItem {
   answer: string;
 }
 
-const FAQ_RESPONSES: FAQItem[] = [
-  { keywords: ['技术栈', '会什么', '技术', '前端', 'React'], answer: '何茜媛精通 React、TypeScript、Taro、Next.js、UD Design 等技术栈，有丰富的企业级前端开发经验。' },
-  { keywords: ['工作', '经历', '在哪', '公司'], answer: '何茜媛拥有6年前端开发经验，先后在叙简科技、滴滴出行-橙心优选、字节跳动-飞书工作，现自由职业中。' },
-  { keywords: ['项目', '做过什么', '作品'], answer: '主要项目包括：飞书汇报2.0重构、假勤双系统融合、NPS用户体验治理等。详见 [项目作品集](/projects)。' },
-  { keywords: ['简历', 'resume', '工作经历'], answer: '你可以访问 [简历时间轴](/resume) 查看详细的工作经历和技能。' },
-  { keywords: ['你好', 'hi', 'hello'], answer: '你好！我是何茜媛的 AI 助手，很高兴为你服务！' },
-  { keywords: ['你是谁', '身份'], answer: '我是何茜媛的 AI 助手，可以介绍她的工作经历和项目，也能回答简单的常识问题。' },
-  { keywords: ['学历', '教育', '毕业'], answer: '何茜媛毕业于浙江理工大学数字媒体技术专业，2019年进入互联网行业。' },
-  { keywords: ['爱好', '兴趣'], answer: '除了技术，她喜欢旅行、阅读和探索新技术，持续保持技术手感。' },
-  { keywords: ['联系方式', '联系'], answer: '你可以通过网站上的联系方式联系她，电话：18177310581，邮箱：hexiyuan123@foxmail.com。' },
-  { keywords: ['react hooks', 'hooks'], answer: '何茜媛熟练使用 React Hooks，包括 useState、useEffect、useContext、useReducer 等，擅长自定义 hooks 来复用状态逻辑。' },
-  { keywords: ['nextjs', 'next'], answer: '精通 Next.js，包括 App Router、Server Components、API Routes、Static Generation 和 SSR 等核心特性。' },
-  { keywords: ['typescript', 'ts'], answer: 'TypeScript 是主力语言，擅长类型安全、泛型、装饰器等高级特性，能有效提升代码质量和开发效率。' },
-  { keywords: ['性能优化', '优化'], answer: '有丰富的性能优化经验，实现过IOS端TTI提升43%，包体积缩减1.1MB。' },
-  { keywords: ['NPS', '用户体验'], answer: '作为NPS治理专项Owner，搭建了三级问题打标体系，满意度从87%提升至93%。' },
-  { keywords: ['JSError', '稳定性'], answer: '牵头假勤全链路JS错误治理，整体JS错误量下降80%，方案被兄弟团队复用。' },
-  { keywords: ['多端', '小程序'], answer: '有丰富的多端开发经验，完成过休假、加班控件组从原生小程序到Web、H5的全量迁移重构。' },
-];
+const FAQ_RESPONSES: FAQItem[] = faqConfig.faqResponses;
 
-const CONTEXT_MESSAGES: Record<string, string> = {
-  '/resume': '她的工作经历涵盖多个领域，要我展开讲讲某个项目吗？',
-  '/projects': '这里是她做过的项目，每个都有技术亮点，点击卡片可以看详情。',
-  '/timeline': '时间轴上不仅有工作经历，还有她的旅行故事，想看哪个？',
-  '/knowledge': '这里是她整理的前端知识库，想搜什么技术话题？',
-};
+const CONTEXT_MESSAGES: Record<string, string> = faqConfig.contextMessages;
 
-const WELCOME_MESSAGE = '嗨，欢迎来到何茜媛的个人网站！我是她的 AI 助手，可以带你了解她的工作经历和项目，也能回答简单的常识问题。';
+const WELCOME_MESSAGE = faqConfig.welcomeMessage;
 
-const RATE_LIMIT_MSG = '我的分身需要喘口气，稍后再聊吧';
-const MAX_MESSAGES_PER_MINUTE = 100; // Agnes AI 免费，放开限制
+const RATE_LIMIT_MSG = faqConfig.rateLimitMessage;
+const MAX_MESSAGES_PER_MINUTE = faqConfig.maxMessagesPerMinute;
 
 export function FloatingChat() {
   const [isOpen, setIsOpen] = useState(false);

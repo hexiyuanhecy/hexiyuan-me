@@ -1,27 +1,23 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import faqConfig from '@/data/faq.json';
 
 interface FAQItem {
   keywords: string[];
   answer: string;
 }
 
+// 使用外部配置文件的 FAQ，合并 API 特有的扩展
 const FAQ_RESPONSES: FAQItem[] = [
-  { keywords: ['技术栈', '会什么', '技术', '前端', 'React'], answer: '何茜媛精通 React、TypeScript、Taro、Next.js、UD Design 等技术栈，有丰富的企业级前端开发经验。' },
-  { keywords: ['工作', '经历', '在哪', '公司', '字节', '滴滴', '飞书'], answer: '何茜媛拥有6年前端开发经验，先后在叙简科技、滴滴出行-橙心优选、字节跳动-飞书工作，现自由职业中。你可以访问 [简历时间轴](/resume) 查看详细经历。' },
-  { keywords: ['项目', '做过什么', '作品', '重构'], answer: '主要项目包括：飞书汇报2.0重构、假勤双系统融合、NPS用户体验治理、JSError稳定性治理、橙心优选订单重构、GIS模块重构等。详见 [项目作品集](/projects)。' },
-  { keywords: ['简历', 'resume', '工作经历'], answer: '你可以访问 [简历时间轴](/resume) 查看详细的工作经历和技能。' },
-  { keywords: ['你好', 'hi', 'hello'], answer: '你好！我是何茜媛的 AI 助手，很高兴为你服务！我可以介绍她的工作经历和项目，也可以回答一些简单的常识问题。' },
-  { keywords: ['你是谁', '身份', '名字'], answer: '我是何茜媛的 AI 助手，一个专业的智能对话助手。我可以帮你了解何茜媛的工作经历、项目成果，也能回答一些简单的常识问题。' },
-  { keywords: ['学历', '教育', '毕业'], answer: '何茜媛毕业于浙江理工大学数字媒体技术专业，2019年进入互联网行业。' },
-  { keywords: ['爱好', '兴趣'], answer: '除了技术，她喜欢旅行、阅读和探索新技术，持续保持技术手感。' },
-  { keywords: ['联系方式', '联系'], answer: '你可以通过网站上的联系方式联系她，电话：18177310581，邮箱：hexiyuan123@foxmail.com。' },
-  { keywords: ['react hooks', 'hooks'], answer: '何茜媛熟练使用 React Hooks，包括 useState、useEffect、useContext、useReducer 等，擅长自定义 hooks 来复用状态逻辑。' },
-  { keywords: ['typescript', 'ts'], answer: 'TypeScript 是她的主力语言，擅长类型安全、泛型、装饰器等高级特性，能有效提升代码质量和开发效率。' },
-  { keywords: ['性能优化', '优化', 'TTI', '包体积'], answer: '她有丰富的性能优化经验，实现过IOS端TTI提升43%，包体积缩减1.1MB，Web端热启动TTI优化至1s内。' },
-  { keywords: ['NPS', '用户体验', '满意度'], answer: '作为NPS治理专项Owner，她搭建了三级问题打标体系和用户反馈闭环，将系统满意度从87%提升至93%。' },
-  { keywords: ['JSError', '稳定性', '治理'], answer: '牵头假勤全链路JS错误治理，建立周巡检制度，整体JS错误量下降80%，方案被兄弟团队复用。' },
-  { keywords: ['多端', '小程序', 'H5', 'Web'], answer: '有丰富的多端开发经验，完成过休假、加班控件组从原生小程序到Web、H5的全量迁移重构。' },
+  ...faqConfig.faqResponses,
+  // API 特有的扩展关键词
+  { keywords: ['字节', '滴滴', '飞书'], answer: '何茜媛拥有6年前端开发经验，先后在叙简科技、滴滴出行-橙心优选、字节跳动-飞书工作，现自由职业中。你可以访问 [简历时间轴](/resume) 查看详细经历。' },
+  { keywords: ['重构'], answer: '主要项目包括：飞书汇报2.0重构、假勤双系统融合、NPS用户体验治理、JSError稳定性治理、橙心优选订单重构、GIS模块重构等。详见 [项目作品集](/projects)。' },
+  { keywords: ['名字'], answer: '我是何茜媛的 AI 助手，一个专业的智能对话助手。我可以帮你了解何茜媛的工作经历、项目成果，也能回答一些简单的常识问题。' },
+  { keywords: ['TTI', '包体积'], answer: '她有丰富的性能优化经验，实现过IOS端TTI提升43%，包体积缩减1.1MB，Web端热启动TTI优化至1s内。' },
+  { keywords: ['满意度'], answer: '作为NPS治理专项Owner，她搭建了三级问题打标体系和用户反馈闭环，将系统满意度从87%提升至93%。' },
+  { keywords: ['治理'], answer: '牵头假勤全链路JS错误治理，建立周巡检制度，整体JS错误量下降80%，方案被兄弟团队复用。' },
+  { keywords: ['H5', 'Web'], answer: '有丰富的多端开发经验，完成过休假、加班控件组从原生小程序到Web、H5的全量迁移重构。' },
   { keywords: ['工程化', 'CI/CD', '发布流程'], answer: '负责假勤前端火车流水线建设，新增灰度看板、包体积检测、自动化测试等卡点，实现自动化平稳发布。' },
 ];
 

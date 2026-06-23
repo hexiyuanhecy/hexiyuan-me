@@ -114,6 +114,156 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.TagScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  category: 'category',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ExperienceScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  company: 'company',
+  position: 'position',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  summary: 'summary',
+  content: 'content',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ExperienceTagScalarFieldEnum = {
+  id: 'id',
+  experienceId: 'experienceId',
+  tagId: 'tagId'
+};
+
+exports.Prisma.ProjectScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  title: 'title',
+  description: 'description',
+  content: 'content',
+  repoUrl: 'repoUrl',
+  demoUrl: 'demoUrl',
+  coverImage: 'coverImage',
+  highlights: 'highlights',
+  techStack: 'techStack',
+  status: 'status',
+  occurredAt: 'occurredAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  experienceId: 'experienceId'
+};
+
+exports.Prisma.ProjectTagScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  tagId: 'tagId'
+};
+
+exports.Prisma.ProjectModuleScalarFieldEnum = {
+  id: 'id',
+  projectId: 'projectId',
+  module: 'module'
+};
+
+exports.Prisma.TravelScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  title: 'title',
+  destination: 'destination',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  coverImage: 'coverImage',
+  summary: 'summary',
+  content: 'content',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TravelTagScalarFieldEnum = {
+  id: 'id',
+  travelId: 'travelId',
+  tagId: 'tagId'
+};
+
+exports.Prisma.TravelModuleScalarFieldEnum = {
+  id: 'id',
+  travelId: 'travelId',
+  module: 'module'
+};
+
+exports.Prisma.DayPlanScalarFieldEnum = {
+  id: 'id',
+  date: 'date',
+  location: 'location',
+  content: 'content',
+  images: 'images',
+  transportation: 'transportation',
+  accommodation: 'accommodation',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  travelId: 'travelId'
+};
+
+exports.Prisma.LifeEventScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  title: 'title',
+  date: 'date',
+  category: 'category',
+  content: 'content',
+  images: 'images',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.LifeEventTagScalarFieldEnum = {
+  id: 'id',
+  lifeEventId: 'lifeEventId',
+  tagId: 'tagId'
+};
+
+exports.Prisma.LifeEventModuleScalarFieldEnum = {
+  id: 'id',
+  lifeEventId: 'lifeEventId',
+  module: 'module'
+};
+
+exports.Prisma.KnowledgeScalarFieldEnum = {
+  id: 'id',
+  slug: 'slug',
+  title: 'title',
+  url: 'url',
+  category: 'category',
+  description: 'description',
+  notes: 'notes',
+  status: 'status',
+  occurredAt: 'occurredAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.KnowledgeTagScalarFieldEnum = {
+  id: 'id',
+  knowledgeId: 'knowledgeId',
+  tagId: 'tagId'
+};
+
+exports.Prisma.KnowledgeModuleScalarFieldEnum = {
+  id: 'id',
+  knowledgeId: 'knowledgeId',
+  module: 'module'
+};
+
 exports.Prisma.EntryScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -155,7 +305,7 @@ exports.Prisma.WorkExperienceScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.ProjectScalarFieldEnum = {
+exports.Prisma.ProjectOldScalarFieldEnum = {
   entryId: 'entryId',
   name: 'name',
   description: 'description',
@@ -176,7 +326,7 @@ exports.Prisma.KnowledgeLinkScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.TravelScalarFieldEnum = {
+exports.Prisma.TravelOldScalarFieldEnum = {
   entryId: 'entryId',
   destination: 'destination',
   travelDate: 'travelDate',
@@ -185,7 +335,7 @@ exports.Prisma.TravelScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.LifestyleScalarFieldEnum = {
+exports.Prisma.LifestyleOldScalarFieldEnum = {
   entryId: 'entryId',
   subType: 'subType',
   tags: 'tags',
@@ -203,42 +353,37 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-exports.EntryType = exports.$Enums.EntryType = {
-  work_experience: 'work_experience',
-  project: 'project',
-  knowledge_link: 'knowledge_link',
-  travel: 'travel',
-  food: 'food',
-  daily: 'daily',
-  other: 'other'
-};
-
-exports.EntryStatus = exports.$Enums.EntryStatus = {
+exports.Status = exports.$Enums.Status = {
   draft: 'draft',
   published: 'published',
   archived: 'archived'
 };
 
-exports.ModuleName = exports.$Enums.ModuleName = {
-  resume: 'resume',
-  timeline: 'timeline',
-  projects: 'projects',
-  knowledge: 'knowledge',
-  blog: 'blog',
-  travel: 'travel',
-  lifestyle: 'lifestyle',
-  games: 'games'
-};
-
 exports.Prisma.ModelName = {
+  Tag: 'Tag',
+  Experience: 'Experience',
+  ExperienceTag: 'ExperienceTag',
+  Project: 'Project',
+  ProjectTag: 'ProjectTag',
+  ProjectModule: 'ProjectModule',
+  Travel: 'Travel',
+  TravelTag: 'TravelTag',
+  TravelModule: 'TravelModule',
+  DayPlan: 'DayPlan',
+  LifeEvent: 'LifeEvent',
+  LifeEventTag: 'LifeEventTag',
+  LifeEventModule: 'LifeEventModule',
+  Knowledge: 'Knowledge',
+  KnowledgeTag: 'KnowledgeTag',
+  KnowledgeModule: 'KnowledgeModule',
   Entry: 'Entry',
   TextContent: 'TextContent',
   EntryModule: 'EntryModule',
   WorkExperience: 'WorkExperience',
-  Project: 'Project',
+  ProjectOld: 'ProjectOld',
   KnowledgeLink: 'KnowledgeLink',
-  Travel: 'Travel',
-  Lifestyle: 'Lifestyle'
+  TravelOld: 'TravelOld',
+  LifestyleOld: 'LifestyleOld'
 };
 
 /**

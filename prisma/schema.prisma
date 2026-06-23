@@ -1,3 +1,6 @@
+// Hexiyuan Digital Garden - PRD v3.0 数据模型
+// 基于 PRD 要求拆分独立模型
+
 generator client {
   provider = "prisma-client-js"
   output   = "../src/generated/prisma"
@@ -8,38 +11,277 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum EntryType {
-  work_experience
-  project
-  knowledge_link
-  travel
-  food
-  daily
-  other
+// 标签模型（PRD 要求）
+model Tag {
+  id         String   @id @default(cuid())
+  name       String   @unique // 标签名称
+  slug       String   @unique // URL 友好 slug
+  category   String?  // 标签分类（如：技术、工具、语言等）
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  // 关联
+  experiences ExperienceTag[]
+  projects    ProjectTag[]
+  travels     TravelTag[]
+  lifeEvents  LifeEventTag[]
+  knowledge   KnowledgeTag[]
 }
 
-enum EntryStatus {
+// 状态枚举
+enum Status {
   draft
   published
   archived
 }
 
-enum ModuleName {
-  resume
-  timeline
-  projects
-  knowledge
-  blog
-  travel
-  lifestyle
-  games
+// ==================== 工作经历 ====================
+// PRD: Experience（工作经历）独立模型
+
+model Experience {
+  id          String    @id @default(cuid())
+  slug        String    @unique // PRD 要求 slug 作为路由
+  company     String    // 公司名称
+  position    String    // 职位
+  startDate   DateTime  // 开始时间
+  endDate     DateTime? // 结束时间（null 表示至今）
+  summary     String?   // 摘要
+  content     String?   // 详细内容（Markdown）
+  status      Status    @default(published)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // 关联
+  tags        ExperienceTag[]
+  projects    Project[] // 一个经历可以有多个项目
 }
+
+// 工作经历-标签关联
+model ExperienceTag {
+  id           String      @id @default(cuid())
+  experienceId String
+  tagId        String
+
+  experience   Experience  @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+  tag          Tag         @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([experienceId, tagId])
+}
+
+// ==================== 项目 ====================
+// PRD: Project（项目）独立模型
+
+model Project {
+  id          String    @id @default(cuid())
+  slug        String    @unique // PRD 要求 slug 作为路由
+  title       String    // 项目名称
+  description String?   // 项目描述
+  content     String?   // 详细内容（Markdown）
+  repoUrl     String?   // 代码仓库
+  demoUrl     String?   // 演示地址
+  coverImage  String?   // 封面图
+  highlights  String?   // 亮点（JSON 数组格式，用于加粗显示）
+  techStack   String?   // 技术栈（JSON 数组）
+  status      Status    @default(published)
+  occurredAt   DateTime? // 项目时间
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // 关联
+  experienceId String?  // 可选关联至工作经历
+  experience   Experience? @relation(fields: [experienceId], references: [id], onDelete: SetNull)
+  tags         ProjectTag[]
+  modules      ProjectModule[] // 支持多模块展示
+}
+
+// 项目-标签关联
+model ProjectTag {
+  id        String   @id @default(cuid())
+  projectId String
+  tagId     String
+
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  tag       Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, tagId])
+}
+
+// 项目-模块关联（支持项目出现在多个模块）
+model ProjectModule {
+  id        String   @id @default(cuid())
+  projectId String
+  module    String   // resume, timeline, projects, knowledge 等
+
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, module])
+}
+
+// ==================== 旅行 ====================
+// PRD: Travel（旅行）独立模型
+
+model Travel {
+  id          String    @id @default(cuid())
+  slug        String    @unique // PRD 要求 slug 作为路由
+  title       String    // 旅行标题
+  destination String    // 目的地
+  startDate   DateTime? // 旅行开始时间
+  endDate     DateTime? // 旅行结束时间
+  coverImage  String?   // 封面图
+  summary     String?   // 摘要
+  content     String?   // 详细内容（Markdown）
+  status      Status    @default(published)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // 关联
+  tags        TravelTag[]
+  dayPlans    DayPlan[]
+  modules     TravelModule[]
+}
+
+// 旅行-标签关联
+model TravelTag {
+  id       String @id @default(cuid())
+  travelId String
+  tagId    String
+
+  travel   Travel @relation(fields: [travelId], references: [id], onDelete: Cascade)
+  tag      Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([travelId, tagId])
+}
+
+// 旅行-模块关联
+model TravelModule {
+  id        String @id @default(cuid())
+  travelId  String
+  module    String
+
+  travel    Travel @relation(fields: [travelId], references: [id], onDelete: Cascade)
+
+  @@unique([travelId, module])
+}
+
+// ==================== 日行程 ====================
+// PRD: DayPlan（日行程）独立模型 - 当前缺失，需要新增
+
+model DayPlan {
+  id              String   @id @default(cuid())
+  date            DateTime // 日期
+  location        String?  // 地点
+  content         String?  // 行程描述（Markdown）
+  images          String?  // 图片（JSON 数组）
+  transportation  String?  // 交通
+  accommodation   String?  // 住宿
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // 关联
+  travelId        String   // 必须关联至一个旅行
+  travel          Travel   @relation(fields: [travelId], references: [id], onDelete: Cascade)
+}
+
+// ==================== 生活事件 ====================
+// PRD: LifeEvent（生活事件）独立模型 - 当前用 Lifestyle 替代
+
+model LifeEvent {
+  id          String    @id @default(cuid())
+  slug        String    @unique // PRD 要求 slug 作为路由
+  title       String    // 事件标题
+  date        DateTime  // 事件日期
+  category    String?   // 分类（如：学习、旅行、美食、日常等）
+  content     String?   // 详细内容（Markdown）
+  images      String?   // 图片（JSON 数组）
+  status      Status    @default(published)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // 关联
+  tags        LifeEventTag[]
+  modules     LifeEventModule[]
+}
+
+// 生活事件-标签关联
+model LifeEventTag {
+  id         String    @id @default(cuid())
+  lifeEventId String
+  tagId      String
+
+  lifeEvent  LifeEvent @relation(fields: [lifeEventId], references: [id], onDelete: Cascade)
+  tag        Tag       @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([lifeEventId, tagId])
+}
+
+// 生活事件-模块关联
+model LifeEventModule {
+  id         String    @id @default(cuid())
+  lifeEventId String
+  module     String
+
+  lifeEvent  LifeEvent @relation(fields: [lifeEventId], references: [id], onDelete: Cascade)
+
+  @@unique([lifeEventId, module])
+}
+
+// ==================== 生活月（虚拟容器） ====================
+// PRD: LifeMonth（生活月）- 虚拟聚合视图，按 YYYY-MM 自动聚合
+// 注意：此模型仅用于查询聚合，不存储独立数据
+// 通过 LifeEvent.date 字段按 YYYY-MM 分组即可实现
+
+// ==================== 知识库 ====================
+// PRD: Knowledge（知识库）独立模型
+
+model Knowledge {
+  id          String    @id @default(cuid())
+  slug        String    @unique // PRD 要求 slug 作为路由
+  title       String    // 标题
+  url         String?   // 外部链接
+  category    String?   // 分类
+  description String?   // 描述
+  notes       String?   // 笔记（Markdown）
+  status      Status    @default(published)
+  occurredAt  DateTime? // 记录时间
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // 关联
+  tags        KnowledgeTag[]
+  modules     KnowledgeModule[]
+}
+
+// 知识库-标签关联
+model KnowledgeTag {
+  id          String    @id @default(cuid())
+  knowledgeId String
+  tagId       String
+
+  knowledge   Knowledge @relation(fields: [knowledgeId], references: [id], onDelete: Cascade)
+  tag         Tag       @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([knowledgeId, tagId])
+}
+
+// 知识库-模块关联
+model KnowledgeModule {
+  id          String    @id @default(cuid())
+  knowledgeId String
+  module      String
+
+  knowledge   Knowledge @relation(fields: [knowledgeId], references: [id], onDelete: Cascade)
+
+  @@unique([knowledgeId, module])
+}
+
+// ==================== 旧模型保留（兼容迁移）====================
+// 以下模型保留用于数据迁移，迁移完成后可删除
 
 model Entry {
   id            String          @id @default(cuid())
   userId        String          @default("default-user")
-  type          EntryType
-  status        EntryStatus     @default(published)
+  type          String          // work_experience, project, knowledge_link, travel, food, daily, other
+  status        String          @default("published")
   title         String
   slug          String          @unique
   summary       String?
@@ -57,10 +299,10 @@ model Entry {
   textContent   TextContent?
   modules       EntryModule[]
   workExp       WorkExperience?
-  project       Project?
+  project       ProjectOld?
   knowledge     KnowledgeLink?
-  travel        Travel?
-  lifestyle     Lifestyle?
+  travel        TravelOld?
+  lifestyle     LifestyleOld?
 }
 
 model TextContent {
@@ -75,7 +317,7 @@ model TextContent {
 model EntryModule {
   id         String     @id @default(cuid())
   entryId    String
-  moduleName ModuleName
+  moduleName String
 
   entry      Entry      @relation(fields: [entryId], references: [id], onDelete: Cascade)
 
@@ -95,7 +337,8 @@ model WorkExperience {
   entry     Entry    @relation(fields: [entryId], references: [id], onDelete: Cascade)
 }
 
-model Project {
+// 使用 ProjectOld 避免与新 Project 冲突
+model ProjectOld {
   entryId     String   @id @default(cuid())
   name        String
   description String
@@ -120,7 +363,8 @@ model KnowledgeLink {
   entry       Entry    @relation(fields: [entryId], references: [id], onDelete: Cascade)
 }
 
-model Travel {
+// 使用 TravelOld 避免与新 Travel 冲突
+model TravelOld {
   entryId      String   @id @default(cuid())
   destination  String
   travelDate   DateTime?
@@ -131,7 +375,8 @@ model Travel {
   entry        Entry    @relation(fields: [entryId], references: [id], onDelete: Cascade)
 }
 
-model Lifestyle {
+// 使用 LifestyleOld 避免与新 LifeEvent 冲突
+model LifestyleOld {
   entryId     String   @id @default(cuid())
   subType     String
   tags        String

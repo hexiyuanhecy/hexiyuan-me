@@ -11,9 +11,9 @@ function highlightNumbers(text: string): string {
   return text.replace(/(\d+(?:\.\d+)?)(%|倍|万|千|元|ms|s|次|人|个|天|月|年)/g, '<strong class="text-primary font-semibold">$1$2</strong>');
 }
 
-export default async function ProjectDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
-  const entry = await getProjectById(id);
+export default async function ProjectDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const entry = await getProjectById(slug);
 
   if (!entry) {
     notFound();

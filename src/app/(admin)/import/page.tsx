@@ -401,11 +401,6 @@ export default function ImportPage() {
                     ))}
                   </div>
                 </div>
-                {/* <div className="mb-4">
-                  <p className="text-xs text-muted-foreground">
-                    {AI_SERVICES.find(s => s.value === aiService)?.description}
-                  </p>
-                </div> */}
 
                 <div className="mb-4 mt-4 flex items-center gap-2">
                   <div className="text-sm text-muted-foreground mb-2">模板参考（点击使用）：</div>

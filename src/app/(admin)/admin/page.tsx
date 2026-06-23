@@ -9,7 +9,6 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
-// import { getAllEntries, deleteEntry } from '@/lib/queries'; // prisma can only run on server
 
 interface Entry {
   id: string;

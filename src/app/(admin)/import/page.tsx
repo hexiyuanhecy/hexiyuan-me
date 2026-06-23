@@ -1,13 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Upload, CheckCircle2, Sparkles, Code, Briefcase, BookOpen, History, ArrowRight, Trash2, AlertCircle, FileText, Layers, Eye, EyeOff, Edit3, Plus, Merge } from 'lucide-react';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Upload, CheckCircle2, Sparkles, Code, Briefcase, BookOpen, History, ArrowRight, Trash2, AlertCircle, FileText, Layers, Eye, EyeOff, Edit3, Plus, Merge, RotateCcw, Shield } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
@@ -93,6 +94,9 @@ const AI_SERVICES: { value: AIService; label: string; description: string }[] = 
   { value: 'deepseek', label: 'DeepSeek', description: '深度理解，专业领域' },
 ];
 
+const STORAGE_KEY = 'import_draft';
+const STORAGE_TIMESTAMP_KEY = 'import_draft_timestamp';
+
 export default function ImportPage() {
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(false);
@@ -103,6 +107,70 @@ export default function ImportPage() {
   const [importResult, setImportResult] = useState<ImportResult | null>(null);
   const [viewMode, setViewMode] = useState<'summary' | 'detail'>('summary');
   const [activeTemplate, setActiveTemplate] = useState<string | null>(null);
+  const [showResumeDialog, setShowResumeDialog] = useState(false);
+  const [savedDraft, setSavedDraft] = useState<{ content: string; items: AnalyzedItem[]; timestamp: number } | null>(null);
+
+  // 检测 localStorage 中的暂存数据
+  useEffect(() => {
+    const savedContent = localStorage.getItem(STORAGE_KEY);
+    const savedTimestamp = localStorage.getItem(STORAGE_TIMESTAMP_KEY);
+    
+    if (savedContent && savedTimestamp) {
+      try {
+        const items = JSON.parse(savedContent);
+        const timestamp = parseInt(savedTimestamp, 10);
+        setSavedDraft({ content: savedContent, items, timestamp });
+        setShowResumeDialog(true);
+      } catch (e) {
+        console.error('Failed to parse saved draft:', e);
+        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem(STORAGE_TIMESTAMP_KEY);
+      }
+    }
+  }, []);
+
+  // 暂存分析结果到 localStorage
+  const saveDraft = (currentContent: string, currentItems: AnalyzedItem[]) => {
+    if (currentItems.length > 0) {
+      localStorage.setItem(STORAGE_KEY, currentContent);
+      localStorage.setItem(STORAGE_TIMESTAMP_KEY, Date.now().toString());
+    }
+  };
+
+  // 清除暂存数据
+  const clearDraft = () => {
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(STORAGE_TIMESTAMP_KEY);
+    setSavedDraft(null);
+    setShowResumeDialog(false);
+    setContent('');
+    setAnalyzedItems([]);
+  };
+
+  // 恢复暂存数据
+  const resumeDraft = () => {
+    if (savedDraft) {
+      setContent(savedDraft.content);
+      setAnalyzedItems(savedDraft.items);
+      setShowResumeDialog(false);
+    }
+  };
+
+  // 格式化时间戳
+  const formatTimestamp = (timestamp: number) => {
+    const date = new Date(timestamp);
+    const now = new Date();
+    const diffMs = now.getTime() - date.getTime();
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMins / 60);
+    const diffDays = Math.floor(diffHours / 24);
+
+    if (diffMins < 1) return '刚刚';
+    if (diffMins < 60) return `${diffMins} 分钟前`;
+    if (diffHours < 24) return `${diffHours} 小时前`;
+    if (diffDays < 7) return `${diffDays} 天前`;
+    return date.toLocaleDateString('zh-CN');
+  };
 
   const handleAnalyze = async () => {
     if (!content.trim()) {
@@ -140,6 +208,9 @@ export default function ImportPage() {
 
       setAnalyzedItems(items);
       setImportResult(null);
+
+      // 暂存分析结果
+      saveDraft(content, items);
     } catch (err) {
       setError('分析失败，请重试');
     } finally {
@@ -174,6 +245,8 @@ export default function ImportPage() {
       });
       setAnalyzedItems([]);
       setContent('');
+      // 导入成功后清除暂存
+      clearDraft();
     } catch (err) {
       setError('导入失败，请重试');
     } finally {
@@ -265,6 +338,59 @@ export default function ImportPage() {
     setActiveTemplate(type);
   };
 
+  // 恢复对话框
+  const ResumeDialog = () => (
+    <Dialog open={showResumeDialog} onOpenChange={setShowResumeDialog}>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle className="flex items-center gap-2">
+            <RotateCcw className="w-5 h-5 text-primary" />
+            发现未完成的导入
+          </DialogTitle>
+          <DialogDescription>
+            检测到您有未完成的导入内容，是否要恢复？
+          </DialogDescription>
+        </DialogHeader>
+        <div className="py-4">
+          {savedDraft && (
+            <div className="space-y-3">
+              <div className="p-3 bg-secondary/50 rounded-lg">
+                <p className="text-sm font-medium mb-1">暂存内容</p>
+                <p className="text-xs text-muted-foreground line-clamp-2">
+                  {savedDraft.content.slice(0, 100)}...
+                </p>
+              </div>
+              <div className="flex items-center justify-between text-xs text-muted-foreground">
+                <span>{savedDraft.items.length} 条分析结果</span>
+                <span>保存于 {formatTimestamp(savedDraft.timestamp)}</span>
+              </div>
+            </div>
+          )}
+          <div className="mt-4 p-3 bg-blue-50 rounded-lg flex items-start gap-2">
+            <Shield className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+            <p className="text-xs text-blue-600">
+              数据仅保存在您的本地浏览器中，不会上传至服务器。离开页面时内容会自动保存。
+            </p>
+          </div>
+        </div>
+        <DialogFooter className="flex-col sm:flex-row gap-2">
+          <Button
+            variant="outline"
+            onClick={clearDraft}
+            className="bg-secondary/30"
+          >
+            <Trash2 className="w-4 h-4 mr-2" />
+            清除暂存，重新导入
+          </Button>
+          <Button onClick={resumeDraft}>
+            <RotateCcw className="w-4 h-4 mr-2" />
+            恢复上次的导入
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+
   if (importResult) {
     return (
       <div className="min-h-screen pt-20 pb-12">
@@ -334,6 +460,9 @@ export default function ImportPage() {
   return (
     <div className="min-h-screen pt-20 pb-12">
       <div className="absolute top-1/4 -right-32 w-96 h-96 bg-primary/10 rounded-full blur-[100px]" />
+
+      {/* 恢复暂存对话框 */}
+      <ResumeDialog />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto">

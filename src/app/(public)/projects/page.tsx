@@ -37,7 +37,7 @@ export default async function ProjectsPage() {
                 
                 return (
                   <div key={entry.id} className="break-inside-avoid mb-6">
-                    <Link href={`/projects/${entry.id}`} className="group block cursor-pointer">
+                    <Link href={`/projects/${entry.slug}`} className="group block cursor-pointer">
                       <Card className="bg-secondary/40 border-border/50 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 hover:-translate-y-1">
                         <CardContent className="p-5">
                           <div className="flex items-start justify-between mb-3">

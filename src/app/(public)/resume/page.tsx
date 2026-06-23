@@ -311,7 +311,7 @@ export default function ResumePage() {
                         <div className="flex-1">
                           <div className="flex flex-wrap items-center gap-2 mb-1">
                             <Link
-                              href={`/projects/${entry.id}`}
+                              href={`/projects/${entry.slug}`}
                               className="font-semibold text-lg hover:text-primary transition-colors flex items-center gap-2"
                             >
                               {exp?.role || entry.title}

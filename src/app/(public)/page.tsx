@@ -2,9 +2,9 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { Briefcase, Code, BookOpen, MessageCircle, ArrowRight, Mail, MapPin, Sparkles, Zap, Target, Users, GraduationCap, TrendingUp, Globe } from 'lucide-react';
+import { Briefcase, Code, BookOpen, MessageCircle, ArrowRight, Mail, MapPin, Sparkles, Zap, Target, Users, GraduationCap, TrendingUp, Globe, Clock } from 'lucide-react';
 import Link from 'next/link';
-import { getProfile, getProjects } from '@/lib/queries';
+import { getProfile, getProjects, getTimeline } from '@/lib/queries';
 import { parseJsonOrSplit } from '@/lib/utils';
 
 const stats = [
@@ -48,6 +48,24 @@ const sections = [
     borderColor: 'border-blue-500/20',
   },
   {
+    id: 'travel',
+    icon: Globe,
+    title: '旅行攻略',
+    description: '记录旅途中的美好瞬间',
+    color: 'from-green-500 to-green-600',
+    bgColor: 'bg-green-500/10',
+    borderColor: 'border-green-500/20',
+  },
+  {
+    id: 'daily',
+    icon: Sparkles,
+    title: '生活日常',
+    description: '日常点滴与成长记录',
+    color: 'from-purple-500 to-purple-600',
+    bgColor: 'bg-purple-500/10',
+    borderColor: 'border-purple-500/20',
+  },
+  {
     id: 'timeline',
     icon: TrendingUp,
     title: '成长时间轴',
@@ -70,6 +88,8 @@ const sections = [
 export default async function Home() {
   const profile = await getProfile();
   const projects = await getProjects();
+  const timelineEntries = await getTimeline();
+  const latestUpdates = timelineEntries.slice(0, 5);
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-gradient-to-br from-background via-background to-secondary/20">
@@ -129,6 +149,47 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* 最新动态 - PRD F1 要求 */}
+      {latestUpdates.length > 0 && (
+        <section className="py-16 relative z-10">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-bold flex items-center gap-3">
+                  <Clock className="w-5 h-5 text-primary" />
+                  最新动态
+                </h2>
+                <Link href="/timeline" className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-1">
+                  查看全部
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {latestUpdates.map((entry) => (
+                  <Link key={entry.id} href={`/timeline`} className="group">
+                    <Card className="overflow-hidden border-border/50 hover:border-primary/30 hover:shadow-lg transition-all duration-300 bg-card/80 backdrop-blur-sm">
+                      <CardContent className="p-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Badge variant="secondary" className="text-xs bg-primary/10 text-primary border-primary/20">
+                            {entry.type === 'work_experience' ? '工作' : entry.type === 'project' ? '项目' : entry.type === 'travel' ? '旅行' : entry.type === 'knowledge_link' ? '知识' : '日常'}
+                          </Badge>
+                          <span className="text-xs text-muted-foreground">
+                            {entry.occurredAt ? new Date(entry.occurredAt).toLocaleDateString('zh-CN') : ''}
+                          </span>
+                        </div>
+                        <h3 className="font-medium text-sm group-hover:text-primary transition-colors line-clamp-2">
+                          {entry.title}
+                        </h3>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="py-20 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
@@ -163,7 +224,7 @@ export default async function Home() {
               探索板块
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
               {sections.map((section) => {
                 const Icon = section.icon;
                 return (
@@ -211,7 +272,7 @@ export default async function Home() {
                 const techStack = parseJsonOrSplit(project?.techStack);
 
                 return (
-                  <Link key={entry.id} href={`/projects/${entry.id}`} className="group">
+                  <Link key={entry.id} href={`/projects/${entry.slug}`} className="group">
                     <Card className="overflow-hidden border-border/50 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 bg-card/80 backdrop-blur-sm">
                       <CardContent className="p-5">
                         <div className="flex items-start justify-between mb-3">

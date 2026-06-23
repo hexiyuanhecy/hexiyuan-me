@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, X, GitBranch, ExternalLink, Sparkles, ChevronRight, Sun, Moon, Settings } from 'lucide-react';
+import { Menu, X, GitBranch, ExternalLink, Sparkles, ChevronRight, Sun, Moon, Settings, Plane, Calendar } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTheme } from '@/lib/theme-provider';
@@ -11,6 +11,8 @@ const navItems = [
   { label: '首页', href: '/' },
   { label: '简历', href: '/resume' },
   { label: '项目', href: '/projects' },
+  { label: '旅行', href: '/travel' },
+  { label: '日常', href: '/daily' },
   { label: '时间轴', href: '/timeline' },
   { label: '知识库', href: '/knowledge' },
 ];
